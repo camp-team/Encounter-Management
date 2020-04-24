@@ -10,7 +10,7 @@
     ]
   },
   "hosting": {
-    "public": "public",
+    "public": "dist/encounter-management",
     "ignore": [
       "firebase.json",
       "**/.*",
