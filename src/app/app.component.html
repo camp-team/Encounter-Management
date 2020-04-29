@@ -1,1 +1,15 @@
+<mat-toolbar>
+  <button mat-button>デアカン</button>
+  <span class="spacer"></span>
+  <button mat-button [matMenuTriggerFor]="menu1">管理</button>
+  <mat-menu #menu1="matMenu">
+    <button mat-menu-item>A</button>
+    <button mat-menu-item>B</button>
+  </mat-menu>
+  <button mat-button [matMenuTriggerFor]="menu2">マイページ</button>
+  <mat-menu #menu2="matMenu">
+    <button mat-menu-item>個人設定</button>
+    <button mat-menu-item>ログアウト</button>
+  </mat-menu>
+</mat-toolbar>
 <router-outlet></router-outlet>
