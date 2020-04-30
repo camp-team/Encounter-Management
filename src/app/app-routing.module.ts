@@ -8,13 +8,15 @@ const routes: Routes = [
       import('./welcome/welcome.module').then((m) => m.WelcomeModule),
   },
   {
-    path: 'law',
-    loadChildren: () => import('./law/law.module').then(m => m.LawModule)
+    path: 'terms',
+    loadChildren: () =>
+      import('./terms/terms.module').then((m) => m.TermsModule),
   },
   {
-    path: 'terms',
-    loadChildren: () => import('./terms/terms.module').then(m => m.TermsModule)
-  }
+    path: 'law',
+    loadChildren: () =>
+    import('./law/law.module').then((m) => m.LawModule),
+  },
 ];
 
 @NgModule({
