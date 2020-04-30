@@ -1,14 +1,5 @@
 {
   "projects": {
     "default": "encounter-management-a38d1"
-  },
-  "targets": {
-    "encounter-management-a38d1": {
-      "hosting": {
-        "encounter-management": [
-          "encounter-management-a38d1"
-        ]
-      }
-    }
   }
 }

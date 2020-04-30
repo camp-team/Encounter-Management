@@ -123,10 +123,6 @@
               "devServerTarget": "encounter-management:serve:production"
             }
           }
-        },
-        "deploy": {
-          "builder": "@angular/fire:deploy",
-          "options": {}
         }
       }
     }
