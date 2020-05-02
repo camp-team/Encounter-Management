@@ -16,9 +16,10 @@ import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, FooterComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
