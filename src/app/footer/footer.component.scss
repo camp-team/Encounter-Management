@@ -1,0 +1,14 @@
+footer {
+  border-top: outset;
+  color: rgba(black, 0.6);
+}
+
+ul {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 24px;
+  justify-content: space-between;
+  li {
+    list-style: none;
+  }
+}
