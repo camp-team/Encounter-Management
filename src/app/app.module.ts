@@ -17,9 +17,10 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { FooterComponent } from './footer/footer.component';
-
+import { HeaderComponent } from './header/header.component';
+import { MatButtonModule } from '@angular/material/button';
 @NgModule({
-  declarations: [AppComponent, FooterComponent],
+  declarations: [AppComponent, FooterComponent, HeaderComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -35,6 +36,7 @@ import { FooterComponent } from './footer/footer.component';
     AngularFirestoreModule,
     AngularFireStorageModule,
     AngularFireAuthModule,
+    MatButtonModule,
   ],
   providers: [
     {
