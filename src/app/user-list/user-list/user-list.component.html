@@ -1,26 +1,26 @@
-<div class="grid">
-  <mat-card>
-    <mat-card-title>長澤まさみ</mat-card-title>
-    <img mat-card-image src="assets/images/nagasawa.jpg" />
-    <mat-card-content>
-      <p>誕生日</p>
-      <p>ニックネーム</p>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-button>詳細</button>
-      <button mat-button>編集</button>
-    </mat-card-actions>
-  </mat-card>
-  <mat-card>
-    <mat-card-title>最上もが</mat-card-title>
-    <img mat-card-image src="assets/images/mogami.jpg" />
-    <mat-card-content>
-      <p>誕生日</p>
-      <p>ニックネーム</p>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-button>詳細</button>
-      <button mat-button>編集</button>
-    </mat-card-actions>
-  </mat-card>
-</div>
+<mat-tab-group>
+  <mat-tab label="彼女">
+    <div class="grid">
+      <mat-card *ngFor="let user of users">
+        <mat-card-title>{{ user.name }}</mat-card-title>
+        <img mat-card-image src="https://placehold.it/400x200" alt="" />
+        <mat-card-content>
+          <dl>
+            <dt>ニックネーム</dt>
+            <dd>{{ user.nickName }}</dd>
+            <dt>生年月日</dt>
+            <dd>{{ user.birthday }}</dd>
+            <dt>仕事</dt>
+            <dd>{{ user.job }}</dd>
+          </dl>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button>詳細</button>
+          <button mat-raised-button>編集</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </mat-tab>
+  <mat-tab label="Tinder"> Content 2 </mat-tab>
+  <mat-tab label="友達"> Content 3 </mat-tab>
+</mat-tab-group>
