@@ -1,0 +1,25 @@
+:host {
+  display: block;
+  padding: 24px;
+}
+
+.user-detail {
+  padding: 14px;
+}
+mat-card {
+  text-align: center;
+}
+
+dt {
+  float: left;
+  clear: both;
+  width: 100px;
+}
+
+mat-form-field {
+  width: 100;
+}
+
+.basic-information {
+  border-bottom: 2px solid;
+}
