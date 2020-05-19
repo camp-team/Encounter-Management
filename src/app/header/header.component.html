@@ -6,12 +6,23 @@
   </div>
   <div class="tools">
     <button mat-button [matMenuTriggerFor]="menu">リスト管理</button>
-    <mat-menu #menu="matMenu">
-      <button mat-menu-item>新規追加</button>
-      <button mat-menu-item>Lorem.</button>
-    </mat-menu>
-    <button mat-icon-button>
-      <mat-icon>person</mat-icon>
+    <button mat-button [matMenuTriggerFor]="menu">
+      <mat-icon>account_circle</mat-icon>
     </button>
+    <mat-menu #menu="matMenu">
+      <button (click)="login()" mat-menu-item>
+        <mat-icon>assignment_ind</mat-icon>
+        <span>ログイン</span>
+      </button>
+      <button (click)="logout()" mat-menu-item>
+        <mat-icon>assignment_return</mat-icon>
+        <span>ログアウト</span>
+      </button>
+      <mat-divider></mat-divider>
+      <button mat-menu-item>
+        <mat-icon>build</mat-icon>
+        <span>設定</span>
+      </button>
+    </mat-menu>
   </div>
 </mat-toolbar>
