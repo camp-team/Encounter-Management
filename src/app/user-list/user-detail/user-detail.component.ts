@@ -10,16 +10,16 @@ export class UserDetailComponent implements OnInit {
   commentForm = new FormControl('', [Validators.maxLength(400)]);
   usersDetail = [
     {
-      name: 'まさみ3000',
-      nickName: 'まさみたん',
-      birthday: '19870603',
+      name: 'Lorem',
+      nickName: 'Lorem',
+      birthday: '19990909',
       age: '30',
-      job: '女優',
-      holiday: '不定休',
-      history: 'リリー・フランキー',
-      birthplace: '静岡',
-      nearestStation: '品川駅',
-      hobby: '漫画',
+      job: 'Lorem',
+      holiday: 'Lorem',
+      history: 'Lorem',
+      birthplace: 'Lorem',
+      nearestStation: 'Lorem',
+      hobby: 'Lorem',
     },
   ];
   constructor() {}

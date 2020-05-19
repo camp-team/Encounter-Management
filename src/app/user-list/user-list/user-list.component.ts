@@ -8,22 +8,22 @@ import { Component, OnInit } from '@angular/core';
 export class UserListComponent implements OnInit {
   users = [
     {
-      name: 'まさみ3000',
-      nickName: 'まさみちゃん',
-      birthday: '19870603',
-      job: '女優',
+      name: 'Lorem',
+      nickName: 'Lorem',
+      birthday: '1990603',
+      job: 'Lorem',
     },
     {
-      name: '恵子',
-      nickName: '恵子ちゃん',
+      name: 'Lorem',
+      nickName: 'Lorem',
       birthday: '19990909',
-      job: 'OL',
+      job: 'Lorem',
     },
     {
-      name: '花子',
-      nickName: 'トイレ',
-      birthday: '19990404',
-      job: '幽霊',
+      name: 'Lorem',
+      nickName: 'Lorem',
+      birthday: '19990909',
+      job: 'Lorem',
     },
   ];
 

@@ -19,6 +19,9 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
 @NgModule({
   declarations: [AppComponent, FooterComponent, HeaderComponent],
   imports: [
@@ -37,6 +40,8 @@ import { MatButtonModule } from '@angular/material/button';
     AngularFireStorageModule,
     AngularFireAuthModule,
     MatButtonModule,
+    MatDividerModule,
+    MatSnackBarModule,
   ],
   providers: [
     {
