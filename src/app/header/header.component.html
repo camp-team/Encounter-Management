@@ -5,15 +5,20 @@
     <mat-icon class="search__icon">search</mat-icon>
   </div>
   <div class="tools">
-    <button mat-button [matMenuTriggerFor]="menu">リスト管理</button>
-    <button mat-button [matMenuTriggerFor]="menu">
-      <mat-icon>account_circle</mat-icon>
-    </button>
+    <button
+      *ngIf="user$ | async as user; else loginButton"
+      [style.background-image]="'url(' + user.avatarURL + ')'"
+      mat-icon-button
+      class="avatar"
+      [matMenuTriggerFor]="menu"
+    ></button>
+
     <mat-menu #menu="matMenu">
-      <button (click)="login()" mat-menu-item>
-        <mat-icon>assignment_ind</mat-icon>
-        <span>ログイン</span>
-      </button>
+      <ng-template #loginButton>
+        <button (click)="login()" mat-menu-item>
+          <span>ログイン</span>
+        </button>
+      </ng-template>
       <button (click)="logout()" mat-menu-item>
         <mat-icon>assignment_return</mat-icon>
         <span>ログアウト</span>
