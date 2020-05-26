@@ -10,6 +10,7 @@ import { UserCreate } from 'src/app/interfaces/user-create';
 })
 export class UserCreateComponent implements OnInit {
   userCreate: UserCreate = {
+    id: 'xxx',
     familyName: '山田',
     givenName: '太郎',
     nickName: 'やまちゃん',

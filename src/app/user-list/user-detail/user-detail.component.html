@@ -1,4 +1,13 @@
 <div class="container">
+  <button
+    mat-button
+    routerLink="/edit"
+    [queryParams]="{
+      id: id
+    }"
+  >
+    編集
+  </button>
   <mat-card *ngFor="let userDetail of usersDetail">
     <div class="user-detail">
       <mat-card-title>{{ userDetail.name }}</mat-card-title>

@@ -1,4 +1,5 @@
 export interface UserCreate {
+  id: string;
   familyName: string;
   givenName: string;
   nickName: string;

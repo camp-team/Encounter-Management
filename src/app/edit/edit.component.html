@@ -1,0 +1,56 @@
+<button *ngIf="isDevMode" (click)="setDummy()">テスト</button>
+
+<h1>{{ target ? target.familyName + 'を編集' : '追加' }}</h1>
+
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <mat-form-field>
+    <mat-label>familyName</mat-label>
+    <input type="text" matInput formControlName="familyName" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>givenName</mat-label>
+    <input type="text" matInput formControlName="givenName" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>nickName</mat-label>
+    <input type="text" matInput formControlName="nickName" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>familyNameYomigana</mat-label>
+    <input type="text" matInput formControlName="familyNameYomigana" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>givenNameYomigana</mat-label>
+    <input type="text" matInput formControlName="givenNameYomigana" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>bday</mat-label>
+    <input type="text" matInput formControlName="bday" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>gender</mat-label>
+    <input type="text" matInput formControlName="gender" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>job</mat-label>
+    <input type="text" matInput formControlName="job" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>holiday</mat-label>
+    <input type="text" matInput formControlName="holiday" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>birthplace</mat-label>
+    <input type="text" matInput formControlName="birthplace" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>nearestStation</mat-label>
+    <input type="text" matInput formControlName="nearestStation" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>hobby</mat-label>
+    <input type="text" matInput formControlName="hobby" />
+  </mat-form-field>
+
+  <button [disabled]="form.invalid || form.pristine">保存</button>
+</form>
