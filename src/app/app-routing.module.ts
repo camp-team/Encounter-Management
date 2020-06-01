@@ -17,6 +17,14 @@ const routes: Routes = [
     loadChildren: () => import('./law/law.module').then((m) => m.LawModule),
   },
   {
+    path: 'edit',
+    loadChildren: () => import('./edit/edit.module').then((m) => m.EditModule),
+  },
+  {
+    path: 'create',
+    loadChildren: () => import('./edit/edit.module').then((m) => m.EditModule),
+  },
+  {
     path: 'user-list',
     loadChildren: () =>
       import('./user-list/user-list.module').then((m) => m.UserListModule),

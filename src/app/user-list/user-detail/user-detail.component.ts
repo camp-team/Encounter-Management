@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-user-detail',
@@ -7,22 +8,32 @@ import { FormControl, Validators } from '@angular/forms';
   styleUrls: ['./user-detail.component.scss'],
 })
 export class UserDetailComponent implements OnInit {
-  commentForm = new FormControl('', [Validators.maxLength(400)]);
+  id: string;
+
   usersDetail = [
     {
-      name: 'Lorem',
+      id: 1,
+      familyName: 'Lorem',
+      givenName: 'Lorem',
       nickName: 'Lorem',
-      birthday: '19990909',
-      age: '30',
+      familyNameKana: 'Lorem',
+      givenNameKana: 'Lorem',
+      age: '25',
+      gender: '男',
       job: 'Lorem',
       holiday: 'Lorem',
-      history: 'Lorem',
       birthplace: 'Lorem',
       nearestStation: 'Lorem',
       hobby: 'Lorem',
+      history: 'Lorem',
+      lastday: 'Lorem',
+      memo: 'Lorem',
+      createdAt: 11111111,
     },
   ];
-  constructor() {}
+  constructor(private route: ActivatedRoute) {
+    this.route.paramMap.subscribe((map) => (this.id = map.get('id')));
+  }
 
   ngOnInit(): void {}
 }

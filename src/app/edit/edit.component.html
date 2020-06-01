@@ -1,0 +1,222 @@
+<div class="container">
+  <mat-card>
+    <div>
+      <h1>{{ target ? '編集' : '追加' }}</h1>
+      <h2>基本情報</h2>
+    </div>
+    <div class="form">
+      <form [formGroup]="form" (ngSubmit)="submit()">
+        <div class="form__user">
+          <mat-form-field class="form__familyName-input" appearance="outline">
+            <mat-label>姓</mat-label>
+            <input
+              formControlName="familyName"
+              placeholder="山田"
+              type="text"
+              matInput
+              autocomplete="off"
+            />
+          </mat-form-field>
+
+          <mat-form-field class="form__givenName-input" appearance="outline">
+            <mat-label>名</mat-label>
+            <input
+              formControlName="givenName"
+              placeholder="太郎"
+              type="text"
+              matInput
+              autocomplete="off"
+            />
+          </mat-form-field>
+
+          <div class="form__user">
+            <mat-form-field
+              class="form__familyNameYomigana-input"
+              appearance="outline"
+            >
+              <mat-label>姓（ヨミガナ）</mat-label>
+              <input
+                formControlName="familyNameKana"
+                placeholder="ヤマダ"
+                type="text"
+                matInput
+                autocomplete="off"
+              />
+            </mat-form-field>
+
+            <mat-form-field
+              class="form__givenNameKana-input"
+              appearance="outline"
+            >
+              <mat-label>名（ヨミガナ）</mat-label>
+              <input
+                formControlName="givenNameKana"
+                placeholder="タロウ"
+                type="text"
+                matInput
+                autocomplete="off"
+              />
+            </mat-form-field>
+
+            <div class="form__user">
+              <mat-form-field class="form__nickName-input" appearance="outline">
+                <mat-label>ニックネーム</mat-label>
+                <input
+                  formControlName="nickName"
+                  placeholder="やまちゃん"
+                  type="text"
+                  matInput
+                  autocomplete="off"
+                />
+              </mat-form-field>
+            </div>
+
+            <div class="form__user">
+              <p>顔写真が入る</p>
+              <input type="file" />
+            </div>
+
+            <mat-accordion>
+              <mat-form-field>
+                <mat-label>年齢</mat-label>
+                <input matInput type="number" min="1" />
+              </mat-form-field>
+            </mat-accordion>
+
+            <mat-radio-group formControlName="gender" class="radio-group">
+              <mat-radio-button class="radio-group__item" value="male"
+                >男性</mat-radio-button
+              >
+              <mat-radio-button class="radio-group__item" value="female"
+                >女性</mat-radio-button
+              >
+            </mat-radio-group>
+
+            <div class="form__user">
+              <mat-form-field class="form__job" appearance="outline">
+                <mat-label>仕事</mat-label>
+                <input
+                  formControlName="job"
+                  placeholder="job"
+                  type="text"
+                  matInput
+                  autocomplete="off"
+                />
+              </mat-form-field>
+            </div>
+
+            <div class="form__user">
+              <mat-form-field class="form__holiday-input" appearance="outline">
+                <mat-label>休み</mat-label>
+                <input
+                  formControlName="holiday"
+                  placeholder="休み"
+                  type="text"
+                  matInput
+                  autocomplete="off"
+                />
+              </mat-form-field>
+            </div>
+
+            <div class="form__user">
+              <mat-form-field class="form__history" appearance="fill">
+                <mat-label>知り合った経緯</mat-label>
+                <textarea
+                  type="text"
+                  matInput
+                  formControlName="history"
+                  autocomplete="off"
+                  d
+                  matTextareaAutosize
+                  [matAutosizeMinRows]="3"
+                  [matAutosizeMaxRows]="14"
+                ></textarea>
+              </mat-form-field>
+            </div>
+
+            <div class="form__user">
+              <mat-form-field
+                class="form__birthplace-input"
+                appearance="outline"
+              >
+                <mat-label>出身地</mat-label>
+                <input
+                  formControlName="birthplace"
+                  placeholder="東京都"
+                  type="text"
+                  matInput
+                  autocomplete="off"
+                />
+              </mat-form-field>
+            </div>
+
+            <div class="form__user">
+              <mat-form-field
+                class="form__nearestStation-input"
+                appearance="outline"
+              >
+                <mat-label>最寄り駅</mat-label>
+                <input
+                  formControlName="nearestStation"
+                  placeholder="東京駅"
+                  type="text"
+                  matInput
+                  autocomplete="off"
+                />
+              </mat-form-field>
+            </div>
+
+            <div class="form__user">
+              <mat-form-field class="form__hobby-input" appearance="outline">
+                <mat-label>趣味</mat-label>
+                <input
+                  formControlName="hobby"
+                  placeholder="ランニング"
+                  matInput
+                  type="text"
+                  autocomplete="off"
+                />
+              </mat-form-field>
+            </div>
+
+            <div class="form__user">
+              <mat-form-field class="form__lastday">
+                <input
+                  formControlName="lastday"
+                  matInput
+                  [matDatepicker]="picker"
+                  placeholder="最後に会った日"
+                />
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+              <button mat-raised-button (click)="picker.open()">開く</button>
+            </div>
+
+            <div class="form__user">
+              <mat-form-field class="form__memo" appearance="fill">
+                <mat-label>メモ</mat-label>
+                <textarea
+                  matInput
+                  formControlName="memo"
+                  type="text"
+                  matTextareaAutosize
+                  [matAutosizeMinRows]="3"
+                  [matAutosizeMaxRows]="14"
+                ></textarea>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+
+        <div class="form__button">
+          <button [disabled]="form.invalid || form.pristine" mat-raised-button>
+            保存
+          </button>
+          <button [disabled]="form.invalid || form.pristine" mat-raised-button>
+            削除
+          </button>
+        </div>
+      </form>
+    </div>
+  </mat-card>
+</div>

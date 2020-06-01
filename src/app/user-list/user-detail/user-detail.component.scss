@@ -2,14 +2,23 @@
   display: block;
   padding: 24px;
 }
-
-.user-detail {
-  padding: 14px;
-}
-mat-card {
+.container {
   text-align: center;
+  max-width: 1032px;
+  padding: 0 16px;
+  margin: 0 auto;
 }
 
+.user-detail__avatar {
+  background-size: cover;
+  height: 400px;
+  width: 400px;
+}
+
+.user-detail__content {
+  padding: 16px;
+  margin: 0 auto;
+}
 dt {
   float: left;
   clear: both;
