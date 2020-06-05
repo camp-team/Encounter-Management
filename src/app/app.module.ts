@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { AngularFireFunctionsModule, REGION } from '@angular/fire/functions';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -21,7 +21,10 @@ import { HeaderComponent } from './header/header.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import localeJa from '@angular/common/locales/ja';
+import { registerLocaleData } from '@angular/common';
 
+registerLocaleData(localeJa);
 @NgModule({
   declarations: [AppComponent, FooterComponent, HeaderComponent],
   imports: [
@@ -44,10 +47,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatSnackBarModule,
   ],
   providers: [
-    {
-      provide: REGION,
-      useValue: 'asia-northeast1',
-    },
+    { provide: [REGION, LOCALE_ID], useValue: ['asia-northeast1', 'ja-JP'] },
   ],
   bootstrap: [AppComponent],
 })

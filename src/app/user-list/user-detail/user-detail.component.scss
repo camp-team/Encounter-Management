@@ -2,18 +2,23 @@
   display: block;
   padding: 24px;
 }
-
-.user-detail {
-  padding: 14px;
-}
-mat-card {
+.container {
   text-align: center;
+  max-width: 1032px;
+  padding: 0 16px;
+  margin: 0 auto;
+  box-sizing: border-box;
 }
 
-dt {
-  float: left;
-  clear: both;
-  width: 100px;
+.user-detail__avatar {
+  background-size: cover/cover;
+  height: 400px;
+  width: 400px;
+}
+
+.user-detail__content {
+  padding: 16px;
+  margin: 0 auto;
 }
 
 mat-form-field {
@@ -22,4 +27,9 @@ mat-form-field {
 
 .basic-information {
   border-bottom: 2px solid;
+}
+
+.mat-list-item-container {
+  display: flex;
+  margin: 0 auto;
 }

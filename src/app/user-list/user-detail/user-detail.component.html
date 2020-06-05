@@ -1,44 +1,73 @@
 <div class="container">
-  <mat-card *ngFor="let userDetail of usersDetail">
-    <div class="user-detail">
-      <mat-card-title>{{ userDetail.name }}</mat-card-title>
-      <img mat-card-image src="https://placehold.it/400x200" alt="" />
-      <mat-card-content>
-        <dl>
-          <dt>ニックネーム</dt>
-          <dd>{{ userDetail.nickName }}</dd>
-          <dt>生年月日</dt>
-          <dd>{{ userDetail.birthday }}</dd>
-          <dt>歳</dt>
-          <dd>{{ userDetail.age }}</dd>
-          <dt>仕事</dt>
-          <dd>{{ userDetail.job }}</dd>
-          <dt>休日</dt>
-          <dd>{{ userDetail.holiday }}</dd>
-          <dt>知り合った経緯</dt>
-          <dd>{{ userDetail.history }}</dd>
-          <dt>出身地</dt>
-          <dd>{{ userDetail.birthplace }}</dd>
-          <dt>最寄り駅</dt>
-          <dd>{{ userDetail.nearestStation }}</dd>
-          <dt>趣味</dt>
-          <dd>{{ userDetail.hobby }}</dd>
-        </dl>
-      </mat-card-content>
+  <button mat-button routerLink="/edit" [queryParams]="{ id: id }">
+    編集
+  </button>
+  <mat-card *ngIf="user$ | async as friend">
+    <div>
+      <mat-card-title>{{
+        friend.familyName + friend.givenName
+      }}</mat-card-title>
+      <img
+        mat-card-avatar
+        class="user-detail__avatar"
+        src="https://placehold.it/400x200"
+        alt="顔写真"
+      />
+      <div class="user-detail__content">
+        <mat-card-content>
+          <mat-list>
+            <mat-list-item
+              >作成日{{
+                friend.createdAt.toDate() | date: 'yyyy年MM月dd日（E）'
+              }}</mat-list-item
+            >
+            <div class="mat-list-item-container">
+              <div class="mat-item">
+                <mat-list-item>姓</mat-list-item>
+                <mat-list-item>{{ friend.familyName }}</mat-list-item>
+                <mat-list-item>姓(カナ)</mat-list-item>
+                <mat-list-item>{{ friend.familyNameKana }}</mat-list-item>
+              </div>
+              <div class="mat-item">
+                <mat-list-item>名</mat-list-item>
+                <mat-list-item>{{ friend.givenName }}</mat-list-item>
+                <mat-list-item>名(カナ)</mat-list-item>
+                <mat-list-item>{{ friend.givenNameKana }}</mat-list-item>
+              </div>
+              <!-- <div>
+                <mat-list-item>ニックネーム</mat-list-item>
+                <mat-list-item>{{ friend.nickName }}</mat-list-item>
+                <mat-list-item>年齢</mat-list-item>
+                <mat-list-item>{{ friend.age }}</mat-list-item>
+              </div>
+              <div>
+                <mat-list-item>性別</mat-list-item>
+                <mat-list-item>{{ friend.gender }}</mat-list-item>
+                <mat-list-item>仕事</mat-list-item>
+                <mat-list-item>{{ friend.job }}</mat-list-item>
+              </div>
+              <div>
+                <mat-list-item>休み</mat-list-item>
+                <mat-list-item>{{ friend.holiday }}</mat-list-item>
+                <mat-list-item>最寄り駅</mat-list-item>
+                <mat-list-item>{{ friend.nearestStation }}</mat-list-item>
+              </div>
+              <div>
+                <mat-list-item>知り合った経緯</mat-list-item>
+                <mat-list-item>{{ friend.history }}</mat-list-item>
+                <mat-list-item>趣味</mat-list-item>
+                <mat-list-item>{{ friend.hobby }}</mat-list-item>
+              </div>
+              <div>
+                <mat-list-item>最後に会った日</mat-list-item>
+                <mat-list-item>{{ friend.lastday }}</mat-list-item>
+                <mat-list-item>メモ</mat-list-item>
+                <mat-list-item>{{ friend.memo }}</mat-list-item>
+              </div> -->
+            </div>
+          </mat-list>
+        </mat-card-content>
+      </div>
     </div>
-    <mat-form-field appearance="outline">
-      <mat-label>MEMO</mat-label>
-      <textarea
-        [formControl]="commentForm"
-        matTextareaAutosize
-        #textarea
-        matInput
-      ></textarea>
-      <mat-icon matSuffix>save</mat-icon>
-      <mat-error *ngIf="commentForm.hasError('maxlength')"
-        >最大文字を超えています</mat-error
-      >
-      <mat-hint align="end">{{ textarea.value.length }} / 400</mat-hint>
-    </mat-form-field>
   </mat-card>
 </div>
