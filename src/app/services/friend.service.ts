@@ -32,15 +32,12 @@ export class FriendService {
     }
   }
 
-  getFriend(uid: string, id: string): Observable<Friend> {
+  getFriends(uid: string, id: string): Observable<Friend> {
     return this.db
       .doc<Friend>(`users/${this.authService.uid}/friends/${id}`)
       .valueChanges();
   }
 
-  getFriends(id: string): Observable<Friend[]> {
-    return this.db.collection<Friend>(`friends/${id}`).valueChanges();
-  }
   // deleteFriend(friend: Friend): Promise<void> {
   //   return this.db.doc(`friends/${id}`).delete();
   // }

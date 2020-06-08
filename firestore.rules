@@ -6,7 +6,7 @@ service cloud.firestore {
       allow create: if request.auth.uid != null;
       allow update: if true;
       match /friends/{Id} {
-        allow read, write: if request.auth.uid == userId;
+        allow read, write: if true;
       }
     }
   }

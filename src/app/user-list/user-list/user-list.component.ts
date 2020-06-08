@@ -11,27 +11,7 @@ import { switchMap, map } from 'rxjs/operators';
   styleUrls: ['./user-list.component.scss'],
 })
 export class UserListComponent implements OnInit {
-  friends$: Observable<Friend[]> = this.friendService.getFriends;
-  // users = [
-  //   {
-  //     name: 'Lorem',
-  //     nickName: 'Lorem',
-  //     birthday: '1990603',
-  //     job: 'Lorem',
-  //   },
-  //   {
-  //     name: 'Lorem',
-  //     nickName: 'Lorem',
-  //     birthday: '19990909',
-  //     job: 'Lorem',
-  //   },
-  //   {
-  //     name: 'Lorem',
-  //     nickName: 'Lorem',
-  //     birthday: '19990909',
-  //     job: 'Lorem',
-  //   },
-  // ];
+  friends$: Observable<Friend> = this.friendService.getFriends('id', 'uid');
 
   constructor(
     private route: ActivatedRoute,
@@ -42,7 +22,7 @@ export class UserListComponent implements OnInit {
     this.friends$ = this.route.paramMap.pipe(
       switchMap((map) => {
         const id = map.get('id');
-        return this.friendService.getFriends(id);
+        return this.friendService.getFriends('id', 'uid');
       })
     );
   }
