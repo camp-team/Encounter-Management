@@ -20,7 +20,7 @@ export class UserDetailComponent implements OnInit {
   ]).pipe(
     switchMap(([map, user]) => {
       if (user) {
-        return this.friendService.getFriend(user.id, map.get('id'));
+        return this.friendService.getFriends(user.id, map.get('id'));
       } else {
         return of(null);
       }

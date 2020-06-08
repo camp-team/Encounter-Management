@@ -5,7 +5,7 @@
     <mat-icon class="search__icon">search</mat-icon>
   </div>
   <div class="tools">
-    <button mat-button routerLink="/user-list">友達一覧</button>
+    <button mat-button [routerLink]="['/user-list']">友達一覧</button>
     <button
       *ngIf="user$ | async as user; else loginButton"
       [style.background-image]="'url(' + user.avatarURL + ')'"

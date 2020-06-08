@@ -49,7 +49,7 @@ export class EditComponent implements OnInit {
         switchMap((map) => {
           const id = map.get('id');
           if (id) {
-            return this.friendService.getFriend(this.authservice.uid, id);
+            return this.friendService.getFriends(this.authservice.uid, id);
           } else {
             return of(null);
           }
