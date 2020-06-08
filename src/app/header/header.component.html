@@ -5,6 +5,7 @@
     <mat-icon class="search__icon">search</mat-icon>
   </div>
   <div class="tools">
+    <button mat-button routerLink="/user-list">友達一覧</button>
     <button
       *ngIf="user$ | async as user; else loginButton"
       [style.background-image]="'url(' + user.avatarURL + ')'"
@@ -22,6 +23,11 @@
       <button (click)="logout()" mat-menu-item>
         <mat-icon>assignment_return</mat-icon>
         <span>ログアウト</span>
+      </button>
+      <mat-divider></mat-divider>
+      <button [routerLink]="['/create']" mat-menu-item>
+        <mat-icon>add_to_photos</mat-icon>
+        <span>新規追加</span>
       </button>
       <mat-divider></mat-divider>
       <button mat-menu-item>

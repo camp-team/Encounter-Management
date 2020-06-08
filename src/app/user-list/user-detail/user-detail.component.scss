@@ -2,24 +2,43 @@
   display: block;
   padding: 24px;
 }
-
-.user-detail {
-  padding: 14px;
-}
-mat-card {
+.container {
   text-align: center;
+  max-width: 1032px;
+  padding: 0 16px;
+  margin: 0 auto;
+  box-sizing: border-box;
 }
 
-dt {
-  float: left;
-  clear: both;
-  width: 100px;
+.profile {
+  &__avatar {
+    width: 200px;
+    height: 200px;
+    background: #000 center/cover url('https://fakeimg.pl/250x100');
+    border-radius: 50%;
+  }
+  &__created {
+    color: rgba(black, 0.6);
+  }
+  &__content {
+    padding: 16px;
+    margin: 0 auto;
+  }
 }
 
 mat-form-field {
   width: 100%;
 }
 
+mat-card-title {
+  font-weight: 500;
+}
+
 .basic-information {
   border-bottom: 2px solid;
+}
+
+dt {
+  float: left;
+  color: rgba(black, 0.6);
 }

@@ -1,20 +1,28 @@
 <mat-tab-group>
   <mat-tab label="彼女">
     <div class="grid">
-      <mat-card *ngFor="let user of users" routerLink="./xxx">
-        <mat-card-title>{{ user.name }}</mat-card-title>
-        <img mat-card-image src="https://placehold.it/400x200" alt="" />
-        <mat-card-content>
-          <dl>
-            <dt>ニックネーム</dt>
-            <dd>{{ user.nickName }}</dd>
-            <dt>生年月日</dt>
-            <dd>{{ user.birthday }}</dd>
-            <dt>仕事</dt>
-            <dd>{{ user.job }}</dd>
-          </dl>
-        </mat-card-content>
-      </mat-card>
+      <a
+        class="friend"
+        *ngFor="let friend of friends$ | async"
+        routerLink="./xxx"
+      >
+        <mat-card>
+          <mat-card-title>{{
+            friend.familyName + friend.givenName
+          }}</mat-card-title>
+          <img mat-card-image src="https://placehold.it/400x200" alt="" />
+          <mat-card-content>
+            <dl>
+              <dt>ニックネーム</dt>
+              <dd>{{ friend.nickName }}</dd>
+              <dt>歳</dt>
+              <dd>{{ friend.age }}</dd>
+              <dt>仕事</dt>
+              <dd>{{ friend.job }}</dd>
+            </dl>
+          </mat-card-content>
+        </mat-card>
+      </a>
     </div>
   </mat-tab>
   <mat-tab label="Tinder"> Content 2 </mat-tab>

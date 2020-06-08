@@ -1,0 +1,29 @@
+:host {
+  display: block;
+  padding: 24px;
+}
+.container {
+  text-align: center;
+  max-width: 1032px;
+  padding: 0 16px;
+  margin: 0 auto;
+}
+mat-form-field {
+  width: 100%;
+}
+
+.form__user {
+  margin-bottom: 16px;
+}
+
+.radio-group {
+  margin-bottom: 16px;
+  display: block;
+  &__item {
+    margin-right: 24px;
+  }
+}
+
+button {
+  margin-left: 16px;
+}
