@@ -1,0 +1,23 @@
+:host {
+  display: block;
+  padding: 80px 64px;
+}
+.container {
+  text-align: center;
+}
+
+.heading {
+  text-align: center;
+}
+
+.radio-group {
+  margin-bottom: 32px;
+  display: block;
+  &__item {
+    margin-right: 24px;
+  }
+}
+
+.form__day {
+  padding: 24px;
+}

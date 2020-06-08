@@ -1,0 +1,211 @@
+<mat-card>
+  <div class="heading">
+    <h2 class="heading__title">基本情報の追加</h2>
+  </div>
+  <div class="container">
+    <div class="form">
+      <form [formGroup]="form" (ngSubmit)="submit()">
+        <div class="form__user">
+          <mat-form-field class="form__familyName-input" appearance="outline">
+            <mat-label>姓</mat-label>
+            <input
+              formControlName="familyName"
+              placeholder="山田"
+              type="text"
+              matInput
+              autocomplete="off"
+              required
+            />
+            <mat-error *ngIf="familyNameContorol.hasError('required')"
+              >必須入力です</mat-error
+            >
+            <mat-error *ngIf="familyNameContorol.hasError('maxlength')"
+              >長すぎます</mat-error
+            >
+          </mat-form-field>
+
+          <mat-form-field class="form__givenName-input" appearance="outline">
+            <mat-label>名</mat-label>
+            <input
+              formControlName="givenName"
+              placeholder="太郎"
+              type="text"
+              matInput
+              autocomplete="off"
+              required
+            />
+            <mat-error *ngIf="givenNameContorol.hasError('required')"
+              >必須入力です</mat-error
+            >
+            <mat-error *ngIf="givenNameContorol.hasError('maxlength')"
+              >長すぎます</mat-error
+            >
+          </mat-form-field>
+        </div>
+
+        <div class="form__user">
+          <mat-form-field
+            class="form__familyNameYomigana-input"
+            appearance="outline"
+          >
+            <mat-label>姓（ヨミガナ）</mat-label>
+            <input
+              formControlName="familyNameYomigana"
+              placeholder="ヤマダ"
+              type="text"
+              matInput
+              autocomplete="off"
+              required
+            />
+            <mat-error *ngIf="familyNameYomiganaContorol.hasError('required')"
+              >必須入力です</mat-error
+            >
+            <mat-error *ngIf="familyNameYomiganaContorol.hasError('maxlength')"
+              >長すぎます</mat-error
+            >
+          </mat-form-field>
+
+          <mat-form-field
+            class="form__givenNameYomigana-input"
+            appearance="outline"
+          >
+            <mat-label>名（ヨミガナ）</mat-label>
+            <input
+              formControlName="givenNameYomigana"
+              placeholder="タロウ"
+              type="text"
+              matInput
+              autocomplete="off"
+              required
+            />
+            <mat-error *ngIf="givenNameYomiganaContorol.hasError('required')"
+              >必須入力です</mat-error
+            >
+            <mat-error *ngIf="givenNameYomiganaContorol.hasError('maxlength')"
+              >長すぎます</mat-error
+            >
+          </mat-form-field>
+        </div>
+
+        <div class="form__user">
+          <mat-form-field class="form__nickName-input" appearance="outline">
+            <mat-label>ニックネーム</mat-label>
+            <input
+              formControlName="nickName"
+              placeholder="やまちゃん"
+              type="text"
+              matInput
+              autocomplete="off"
+            />
+          </mat-form-field>
+        </div>
+
+        <div class="form__user">
+          <p>顔写真が入る</p>
+          <input type="file" />
+        </div>
+
+        <div class="form__item">
+          <mat-form-field class="form__day">
+            <input matInput [matDatepicker]="picker" placeholder="生年月日" />
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <button mat-raised-button (click)="picker.open()">開く</button>
+        </div>
+
+        <mat-radio-group formControlName="gender" class="radio-group">
+          <mat-radio-button class="radio-group__item" value="male"
+            >男性</mat-radio-button
+          >
+          <mat-radio-button class="radio-group__item" value="female"
+            >女性</mat-radio-button
+          >
+        </mat-radio-group>
+
+        <div class="form__user">
+          <mat-form-field class="form__job" appearance="outline">
+            <mat-label>仕事</mat-label>
+            <input
+              formControlName="job"
+              placeholder="job"
+              type="text"
+              matInput
+              autocomplete="off"
+            />
+          </mat-form-field>
+        </div>
+
+        <div class="form__user">
+          <mat-form-field class="form__holiday-input" appearance="outline">
+            <mat-label>休み</mat-label>
+            <input
+              formControlName="holiday"
+              placeholder="休み"
+              type="text"
+              matInput
+              autocomplete="off"
+            />
+          </mat-form-field>
+        </div>
+
+        <div class="form__user">
+          <mat-form-field class="form__history" appearance="fill">
+            <mat-label>知り合った経緯</mat-label>
+            <textarea
+              matInput
+              matTextareaAutosize
+              [matAutosizeMinRows]="3"
+              [matAutosizeMaxRows]="14"
+            ></textarea>
+          </mat-form-field>
+        </div>
+
+        <div class="form__user">
+          <mat-form-field class="form__birthplace-input" appearance="outline">
+            <mat-label>出身地</mat-label>
+            <input
+              formControlName="birthplace"
+              placeholder="東京都"
+              type="text"
+              matInput
+              autocomplete="off"
+            />
+          </mat-form-field>
+        </div>
+
+        <div class="form__user">
+          <mat-form-field
+            class="form__nearestStation-input"
+            appearance="outline"
+          >
+            <mat-label>最寄り駅</mat-label>
+            <input
+              formControlName="nearestStation"
+              placeholder="東京駅"
+              type="text"
+              matInput
+              autocomplete="off"
+            />
+          </mat-form-field>
+        </div>
+
+        <div class="form__user">
+          <mat-form-field class="form__hobby-input" appearance="outline">
+            <mat-label>趣味</mat-label>
+            <input
+              formControlName="hobby"
+              placeholder="ランニング"
+              type="text"
+              matInput
+              autocomplete="off"
+            />
+          </mat-form-field>
+        </div>
+
+        <button [disabled]="form.invalid || form.pristine" mat-raised-button>
+          登録する
+        </button>
+      </form>
+    </div>
+  </div>
+</mat-card>
