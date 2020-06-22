@@ -13,7 +13,7 @@ import { User } from '../interfaces/user';
 })
 export class AuthService {
   uid: string;
-  User$: Observable<User> = this.afAuth.authState.pipe(
+  user$: Observable<User> = this.afAuth.authState.pipe(
     switchMap((afUser) => {
       this.uid = afUser?.uid;
       if (afUser) {
@@ -35,16 +35,16 @@ export class AuthService {
     const provider = new auth.GoogleAuthProvider();
     provider.setCustomParameters({ prompt: 'select_account' });
     this.afAuth.signInWithPopup(provider).then(() => {
-      this.snackBar.open('ログインしました', null, {
+      this.snackBar.open('ログインしました😋', null, {
         duration: 3000,
       });
-      this.router.navigateByUrl('/user-list');
+      this.router.navigateByUrl('/create');
     });
   }
 
   logout() {
     this.afAuth.signOut().then(() => {
-      this.snackBar.open('ログアウトしました', null, {
+      this.snackBar.open('ログアウトしました😭', null, {
         duration: 3000,
       });
       this.router.navigateByUrl('/welcome');

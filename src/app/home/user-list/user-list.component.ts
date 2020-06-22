@@ -11,19 +11,20 @@ import { switchMap, map } from 'rxjs/operators';
   styleUrls: ['./user-list.component.scss'],
 })
 export class UserListComponent implements OnInit {
-  friends$: Observable<Friend> = this.friendService.getFriends('id', 'uid');
+  // id: string;
+  // target$: Observable<Friend[]> = this.route.queryParamMap.pipe(
+  //   switchMap((map) => {
+  //     this.id = map.get('id');
+  //     return this.friendService.getAllFriends();
+  //   })
+  // );
 
-  constructor(
-    private route: ActivatedRoute,
-    private friendService: FriendService
-  ) {}
-
-  ngOnInit(): void {
-    this.friends$ = this.route.paramMap.pipe(
-      switchMap((map) => {
-        const id = map.get('id');
-        return this.friendService.getFriends('id', 'uid');
-      })
-    );
+  constructor() {
+    // private friendService: FriendService // private route: ActivatedRoute,
+    // this.route.queryParamMap.subscribe((map) => {
+    //   console.log(map.get('friendId'));
+    // });
   }
+
+  ngOnInit(): void {}
 }

@@ -40,5 +40,13 @@ mat-card-title {
 
 dt {
   float: left;
-  color: rgba(black, 0.6);
+  clear: left;
+  width: 100px;
+  justify-content: center;
+}
+
+dd {
+  float: left;
+  margin-left: 1em;
+  width: 100px;
 }

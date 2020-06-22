@@ -5,6 +5,7 @@ import { Friend } from '../interfaces/friend';
 import { Observable, of } from 'rxjs';
 import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +14,8 @@ export class FriendService {
   constructor(
     private db: AngularFirestore,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private snackBar: MatSnackBar
   ) {}
 
   createFriend(friend: Omit<Friend, 'id' | 'createdAt'>): Promise<void> {
@@ -27,24 +29,38 @@ export class FriendService {
           createdAt: firestore.Timestamp.now(),
         })
         .then(() => {
-          this.router.navigateByUrl(`/user-list/${id}`);
+          this.snackBar.open('友達情報を追加しました！😋', null, {
+            duration: 2000,
+          });
+          this.router.navigate(['/user-detail'], {
+            queryParams: {
+              id,
+            },
+          });
         });
     }
   }
 
-  getFriends(uid: string, id: string): Observable<Friend> {
+  getFriend(id: string): Observable<Friend> {
+    return this.db.doc<Friend>(`friends${id}`).valueChanges();
+  }
+
+  getAllFriends(): Observable<Friend[]> {
+    if (!this.authService.uid) {
+      return of([]);
+    }
     return this.db
-      .doc<Friend>(`users/${this.authService.uid}/friends/${id}`)
+      .collection<Friend>(`users/${this.authService.uid}/friends`, (ref) =>
+        ref.orderBy('createdAt', 'desc')
+      )
       .valueChanges();
   }
 
-  // deleteFriend(friend: Friend): Promise<void> {
-  //   return this.db.doc(`friends/${id}`).delete();
+  // updateFriend(id: string, friend: Friend): Promise<void> {
+  //   return this.db.doc<Friend>(`friends/${id}`).update(friend);
   // }
 
-  updateFriend(friend: Friend): Promise<void> {
-    return this.db
-      .doc<Friend>(`users/${this.authService.uid}/friends/${friend.id}`)
-      .update(friend);
-  }
+  // deleteFriend(id: string): Promise<void> {
+  //   return this.db.doc(`users/${this.authService.uid}/friends/${id}`).delete();
+  // }
 }

@@ -1,18 +1,19 @@
 <mat-toolbar class="header">
-  <a mat-button routerLink="/">デアカン</a>
+  <a mat-button routerLink="">デアカン</a>
   <div class="search">
     <input class="search__input" type="text" autocomplete="off" />
     <mat-icon class="search__icon">search</mat-icon>
   </div>
   <div class="tools">
-    <button mat-button [routerLink]="['/user-list']">友達一覧</button>
-    <button
-      *ngIf="user$ | async as user; else loginButton"
-      [style.background-image]="'url(' + user.avatarURL + ')'"
-      mat-icon-button
-      class="avatar"
-      [matMenuTriggerFor]="menu"
-    ></button>
+    <ng-container *ngIf="user$ | async as user; else loginButton">
+      <button mat-button routerLink="">友達一覧</button>
+      <button
+        [style.background-image]="'url(' + user.avatarURL + ')'"
+        mat-icon-button
+        class="avatar"
+        [matMenuTriggerFor]="menu"
+      ></button>
+    </ng-container>
 
     <mat-menu #menu="matMenu">
       <ng-template #loginButton>

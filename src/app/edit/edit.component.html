@@ -1,6 +1,7 @@
 <div class="container">
   <mat-card>
     <div>
+      <!-- 三項演算子（trueの場合は編集、falseは追加) -->
       <h1>{{ target ? '編集' : '追加' }}</h1>
       <h2>基本情報</h2>
     </div>
@@ -68,6 +69,7 @@
                   matInput
                   autocomplete="off"
                 />
+                <mat-error *ngIf="nickName.hasError('required')"></mat-error>
               </mat-form-field>
             </div>
 
@@ -189,7 +191,9 @@
                 />
                 <mat-datepicker #picker></mat-datepicker>
               </mat-form-field>
-              <button mat-raised-button (click)="picker.open()">開く</button>
+              <button type="button" mat-button (click)="picker.open()">
+                開く
+              </button>
             </div>
 
             <div class="form__user">
@@ -205,7 +209,7 @@
                   [matAutosizeMaxRows]="14"
                 ></textarea>
                 <mat-error *ngIf="memo.hasError('maxlength')"
-                  >最大40文字です</mat-error
+                  >最大400文字です</mat-error
                 >
                 <mat-hint align="end"
                   >{{ textarea.value.length }} / 400</mat-hint
@@ -215,16 +219,17 @@
           </div>
         </div>
         <div class="form__button">
+          <button type="button" routerLink="/" mat-flat-button>
+            キャンセル
+          </button>
           <button
-            [routerLink]="['user-list']"
+            [routerLink]="['/user-detail']"
             [queryParams]="{ id: target?.id }"
             [disabled]="form.invalid || form.pristine"
-            mat-button
+            mat-flat-button
+            color="primary"
           >
             保存
-          </button>
-          <button [disabled]="form.invalid || form.pristine" mat-button>
-            キャンセル
           </button>
         </div>
       </form>

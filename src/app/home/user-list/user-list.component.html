@@ -1,10 +1,12 @@
-<mat-tab-group>
+<p>友達リスト</p>
+<!-- <mat-tab-group>
   <mat-tab label="彼女">
     <div class="grid">
       <a
         class="friend"
-        *ngFor="let friend of friends$ | async"
-        routerLink="./xxx"
+        *ngFor="let friend of target$ | async"
+        [routerLink]="['/user-list']"
+        [queryParams]="{ id: friend.id }"
       >
         <mat-card>
           <mat-card-title>{{
@@ -27,4 +29,4 @@
   </mat-tab>
   <mat-tab label="Tinder"> Content 2 </mat-tab>
   <mat-tab label="友達"> Content 3 </mat-tab>
-</mat-tab-group>
+</mat-tab-group> -->
