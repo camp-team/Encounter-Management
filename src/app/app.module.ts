@@ -22,9 +22,16 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { ShellComponent } from './shell/shell/shell.component';
 
 @NgModule({
-  declarations: [AppComponent, FooterComponent, HeaderComponent, NotFoundComponent],
+  declarations: [
+    AppComponent,
+    FooterComponent,
+    HeaderComponent,
+    NotFoundComponent,
+    ShellComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,

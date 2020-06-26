@@ -1,0 +1,13 @@
+.spacer {
+  flex: 1;
+}
+
+.content {
+  display: flex; // 縦並びにする
+  flex-flow: column; // 縦並びにする
+  min-height: 100%; // 最小高さを画面の高さに合わせる
+}
+
+.main {
+  flex: 1; // 成り行きで広げる
+}
