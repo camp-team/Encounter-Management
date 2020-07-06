@@ -1,0 +1,57 @@
+<div class="container">
+  <mat-card *ngIf="target$ | async as friend">
+    <div class="profile">
+      <div class="profile__content">
+        <p>基本プロフィール</p>
+        <p>{{ friend?.familyName + friend?.givenName }}</p>
+        <figure class="profile__avatar" alt="顔写真"></figure>
+        <div></div>
+        <input type="file" />
+        <p>{{ friend.nickName }}</p>
+        <p>{{ friend?.familyNameKana }}</p>
+        <p>{{ friend?.givenNameKana }}</p>
+        <p>{{ friend?.age }}</p>
+        <p>{{ friend?.gender }}</p>
+        <p>{{ friend?.job }}</p>
+        <p>{{ friend?.holiday }}</p>
+        <p>{{ friend?.history }}</p>
+        <p>{{ friend?.birthplace }}</p>
+        <p>{{ friend?.nearestStation }}</p>
+        <p>{{ friend?.hobby }}</p>
+        <p>{{ friend?.lastday }}</p>
+        <p>{{ friend?.memo }}</p>
+        <!-- <ul>
+          <li>
+            <div class="profile__user">
+              <span>身長</span>
+              <span>160cm</span>
+            </div>
+          </li>
+          <li>
+            <div class="profile__user">
+              <span>体型</span>
+              <span>スリム</span>
+            </div>
+          </li>
+          <li>
+            <div class="profile__user">
+              <span>出身地</span>
+              <span>非公開</span>
+            </div>
+          </li>
+        </ul> -->
+        <p class="profile__created">
+          作成日
+          {{ friend.createdAt.toDate() | date: 'yyyy年MM月dd日' }}
+        </p>
+        <p></p>
+        <button mat-flat-button>
+          編集
+        </button>
+        <button mat-flat-button>
+          削除
+        </button>
+      </div>
+    </div>
+  </mat-card>
+</div>
