@@ -3,23 +3,23 @@
     <div class="profile">
       <div class="profile__content">
         <p>基本プロフィール</p>
-        <p>{{ friend?.familyName + friend?.givenName }}</p>
+        <p>{{ friend.familyName + friend.givenName }}</p>
         <figure class="profile__avatar" alt="顔写真"></figure>
         <div></div>
         <input type="file" />
         <p>{{ friend.nickName }}</p>
-        <p>{{ friend?.familyNameKana }}</p>
-        <p>{{ friend?.givenNameKana }}</p>
-        <p>{{ friend?.age }}</p>
-        <p>{{ friend?.gender }}</p>
-        <p>{{ friend?.job }}</p>
-        <p>{{ friend?.holiday }}</p>
-        <p>{{ friend?.history }}</p>
-        <p>{{ friend?.birthplace }}</p>
-        <p>{{ friend?.nearestStation }}</p>
-        <p>{{ friend?.hobby }}</p>
-        <p>{{ friend?.lastday }}</p>
-        <p>{{ friend?.memo }}</p>
+        <p>{{ friend.familyNameKana }}</p>
+        <p>{{ friend.givenNameKana }}</p>
+        <p>{{ friend.age }}</p>
+        <p>{{ friend.gender }}</p>
+        <p>{{ friend.job }}</p>
+        <p>{{ friend.holiday }}</p>
+        <p>{{ friend.history }}</p>
+        <p>{{ friend.birthplace }}</p>
+        <p>{{ friend.nearestStation }}</p>
+        <p>{{ friend.hobby }}</p>
+        <p>{{ friend.lastday }}</p>
+        <p>{{ friend.memo }}</p>
         <p class="profile__created">
           作成日
           {{ friend.createdAt.toDate() | date: 'yyyy年MM月dd日' }}
