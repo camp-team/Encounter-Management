@@ -12,9 +12,11 @@ import { User } from '../interfaces/user';
   providedIn: 'root',
 })
 export class AuthService {
-  User$: Observable<User> = this.afAuth.authState.pipe(
+  uid: string;
+  user$: Observable<User> = this.afAuth.authState.pipe(
     switchMap((afUser) => {
       if (afUser) {
+        this.uid = afUser?.uid;
         return this.db.doc<User>(`users/${afUser.uid}`).valueChanges();
       } else {
         return of(null);
@@ -36,7 +38,7 @@ export class AuthService {
       this.snackBar.open('ログインしました', null, {
         duration: 3000,
       });
-      this.router.navigateByUrl('/user-list');
+      this.router.navigateByUrl('/');
     });
   }
 
@@ -45,7 +47,7 @@ export class AuthService {
       this.snackBar.open('ログアウトしました', null, {
         duration: 3000,
       });
-      this.router.navigateByUrl('/welcome');
+      this.router.navigateByUrl('/about');
     });
   }
 }

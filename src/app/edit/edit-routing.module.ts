@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LawComponent } from './law/law.component';
+import { EditComponent } from './edit/edit.component';
+import { FormGuard } from '../guards/form.guard';
 
 const routes: Routes = [
   {
     path: '',
-    pathMatch: 'full',
-    component: LawComponent,
+    component: EditComponent,
+    canDeactivate: [FormGuard],
   },
 ];
 
@@ -14,4 +15,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class LawRoutingModule {}
+export class EditRoutingModule {}

@@ -1,16 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { UserListComponent } from './user-list/user-list.component';
 import { UserDetailComponent } from './user-detail/user-detail.component';
 
 const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    component: UserListComponent,
+    component: UserDetailComponent,
   },
   {
-    path: ':id',
+    path: 'user-detail/:id',
     component: UserDetailComponent,
   },
 ];
@@ -19,4 +18,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class UserListRoutingModule {}
+export class UserDetailRoutingModule {}

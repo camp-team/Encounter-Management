@@ -4,6 +4,10 @@ service cloud.firestore {
     match /users/{userId} {
       allow read: if true;
       allow create: if request.auth.uid != null;
+      allow update: if true;
+      match /friends/{Id} {
+        allow read, write: if true;
+      }
     }
   }
 }

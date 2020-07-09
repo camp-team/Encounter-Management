@@ -1,0 +1,45 @@
+:host {
+  display: block;
+  padding: 8px;
+}
+.container {
+  text-align: center;
+  max-width: 1032px;
+  margin: 0 auto;
+}
+h2 {
+  font-weight: 500;
+}
+mat-form-field {
+  width: 100%;
+  margin: 4px;
+}
+
+mat-card {
+  padding: 8px;
+}
+
+.avatar {
+  width: 300px;
+  height: 300px;
+  background: url(https://fakeimg.pl/300x300/) center/cover;
+  display: inline-block;
+  margin: 0 auto;
+  border-radius: 50%;
+}
+
+.form__user {
+  display: flex;
+}
+
+.radio-group {
+  margin-bottom: 16px;
+  display: block;
+  &__item {
+    margin-right: 24px;
+  }
+}
+
+button {
+  margin-left: 16px;
+}
