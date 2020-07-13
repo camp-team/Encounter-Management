@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { FriendService } from 'src/app/services/friend.service';
+import { switchMap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { Friend } from 'src/app/interfaces/friend';
 
 @Component({
   selector: 'app-user-list',
@@ -6,29 +11,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-list.component.scss'],
 })
 export class UserListComponent implements OnInit {
-  target$;
-  // users = [
-  //   {
-  //     name: 'Lorem',
-  //     nickName: 'Lorem',
-  //     birthday: '1990603',
-  //     job: 'Lorem',
-  //   },
-  //   {
-  //     name: 'Lorem',
-  //     nickName: 'Lorem',
-  //     birthday: '19990909',
-  //     job: 'Lorem',
-  //   },
-  //   {
-  //     name: 'Lorem',
-  //     nickName: 'Lorem',
-  //     birthday: '19990909',
-  //     job: 'Lorem',
-  //   },
-  // ];
+  target$: Observable<Friend[]>;
 
-  constructor() {}
-
+  constructor(
+    private route: ActivatedRoute,
+    private friendService: FriendService
+  ) {
+    this.target$ = this.route.queryParamMap.pipe(
+      switchMap((map) => {
+        // idパラメータを取得
+        const id = map.get('id');
+        return this.friendService.getAllFriends();
+      })
+    );
+  }
   ngOnInit(): void {}
 }
