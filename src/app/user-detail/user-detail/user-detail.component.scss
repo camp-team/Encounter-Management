@@ -38,14 +38,13 @@ mat-card {
   &__text {
     width: 100%;
   }
-}
-
-.profile__ul {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-  padding: 12px;
-  list-style: none;
+  &__profile__list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    padding: 12px;
+    list-style: none;
+  }
 }
 
 ul {
