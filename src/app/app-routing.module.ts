@@ -37,6 +37,8 @@ const routes: Routes = [
           import('./user-detail/user-detail.module').then(
             (m) => m.UserDetailModule
           ),
+        canLoad: [AuthGuard],
+        canActivate: [AuthGuard],
       },
       {
         path: 'terms',
