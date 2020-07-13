@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Friend } from 'src/app/interfaces/friend';
 import { Observable } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
+import { FriendService } from 'src/app/services/friend.service';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-user-detail',
@@ -9,25 +12,19 @@ import { Observable } from 'rxjs';
 })
 export class UserDetailComponent implements OnInit {
   target$: Observable<Friend>;
-  // friends = [
-  //   {
-  //     familyName: '山田',
-  //     givenName: '太郎',
-  //     nickName: 'やまちゃん',
-  //     familyNameKana: 'ヤマダ',
-  //     givenNameKana: 'タロウ',
-  //     age: 25,
-  //     gender: 'male',
-  //     job: '野球選手',
-  //     holiday: '不定休',
-  //     nearestStation: '東京駅',
-  //     hobby: 'なし',
-  //     history: 'なし',
-  //     lastday: '',
-  //     memo: '楽しい',
-  //   },
-  // ];
-  constructor() {}
+
+  constructor(
+    private route: ActivatedRoute,
+    private friendService: FriendService
+  ) {
+    this.target$ = this.route.queryParamMap.pipe(
+      switchMap((map) => {
+        // idパラメータを取得
+        const id = map.get('id');
+        return this.friendService.getFriend(id);
+      })
+    );
+  }
 
   ngOnInit(): void {}
 }

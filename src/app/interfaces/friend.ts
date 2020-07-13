@@ -14,7 +14,7 @@ export interface Friend {
   nearestStation: string;
   hobby: string;
   history: string;
-  lastday: number;
+  lastday: firestore.Timestamp;
   memo: string;
   birthplace: string;
   createdAt: firestore.Timestamp;
