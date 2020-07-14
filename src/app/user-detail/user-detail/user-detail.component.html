@@ -1,36 +1,95 @@
 <div class="container">
   <mat-card *ngIf="target$ | async as friend">
     <div class="profile">
-      <div class="profile__content">
-        <p>基本プロフィール</p>
-        <p>{{ friend.familyName + friend.givenName }}</p>
-        <figure class="profile__avatar" alt="顔写真"></figure>
-        <div></div>
-        <input type="file" />
-        <p>{{ friend.nickName }}</p>
-        <p>{{ friend.familyNameKana }}</p>
-        <p>{{ friend.givenNameKana }}</p>
-        <p>{{ friend.age }}</p>
-        <p>{{ friend.gender }}</p>
-        <p>{{ friend.job }}</p>
-        <p>{{ friend.holiday }}</p>
-        <p>{{ friend.history }}</p>
-        <p>{{ friend.birthplace }}</p>
-        <p>{{ friend.nearestStation }}</p>
-        <p>{{ friend.hobby }}</p>
-        <p>{{ friend.lastday }}</p>
-        <p>{{ friend.memo }}</p>
-        <p class="profile__created">
+      <h2 class="profile__title">{{ friend.nickName }}</h2>
+      <div class="profile__button">
+        <p>
           作成日
           {{ friend.createdAt.toDate() | date: 'yyyy年MM月dd日' }}
         </p>
-        <p></p>
-        <button mat-flat-button>
-          編集
-        </button>
-        <button mat-flat-button>
-          削除
-        </button>
+        <div>
+          <button mat-flat-button>
+            編集
+          </button>
+          <button mat-flat-button>
+            削除
+          </button>
+        </div>
+      </div>
+      <div class="profile__user">
+        <figure class="profile__avatar" alt="顔写真"></figure>
+        <div></div>
+        <input type="file" />
+      </div>
+      <div class="profile__body">
+        <ul class="profile__list">
+          <li>
+            <h4>姓</h4>
+            <p>{{ friend.familyName || '--------' }}</p>
+          </li>
+          <li>
+            <h4>姓(カナ)</h4>
+            <p>{{ friend.familyNameKana || '--------' }}</p>
+          </li>
+          <li>
+            <h4>名</h4>
+            <p>{{ friend.givenName || '--------' }}</p>
+          </li>
+          <li>
+            <h4>名(カナ)</h4>
+            <p>{{ friend.givenNameKana || '--------' }}</p>
+          </li>
+          <li>
+            <h4>性別</h4>
+            <p>{{ friend.gender || '--------' }}</p>
+          </li>
+          <li>
+            <h4>歳</h4>
+            <p>{{ friend.age || '--------' }}歳</p>
+          </li>
+          <li>
+            <h4>仕事</h4>
+            <p>{{ friend.job || '--------' }}</p>
+          </li>
+          <li>
+            <h4>お休み</h4>
+            <p>{{ friend.holiday || '--------' }}</p>
+          </li>
+          <li>
+            <h4>最寄り駅</h4>
+            <p>{{ friend.nearestStation || '--------' }}</p>
+          </li>
+          <li>
+            <h4>最後に会った日</h4>
+            <p>
+              {{
+                friend.lastday.toDate() | date: 'yyyy年MM月dd日' || '--------'
+              }}
+            </p>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <h4>趣味</h4>
+            <p>{{ friend.hobby || '--------' }}</p>
+          </li>
+        </ul>
+        <div class="profile__history">
+          <ul>
+            <li>
+              <h4>知り合った経緯</h4>
+              <p>{{ friend.history || '--------' }}</p>
+            </li>
+          </ul>
+          <div class="profile__memo">
+            <ul>
+              <li>
+                <h4>メモ</h4>
+                <p>{{ friend.memo || '--------' }}</p>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </mat-card>

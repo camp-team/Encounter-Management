@@ -5,6 +5,7 @@ import { Friend } from '../interfaces/friend';
 import { AuthService } from './auth.service';
 import { firestore } from 'firebase';
 import { Router } from '@angular/router';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -37,5 +38,22 @@ export class FriendService {
           },
         });
       });
+  }
+
+  getFriend(id: string): Observable<Friend> {
+    return this.db
+      .doc<Friend>(`users/${this.authService.uid}/friends/${id}`)
+      .valueChanges();
+  }
+
+  getAllFriends(): Observable<Friend[]> {
+    if (!this.authService.uid) {
+      return of([]);
+    }
+    return this.db
+      .collection<Friend>(`users/${this.authService.uid}/friends`, (ref) =>
+        ref.orderBy('createdAt', 'desc')
+      )
+      .valueChanges();
   }
 }

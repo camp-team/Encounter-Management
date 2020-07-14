@@ -12,7 +12,6 @@ import { AuthService } from 'src/app/services/auth.service';
 export class EditComponent implements OnInit {
   target: Friend;
   isComplete: boolean;
-  uid: string;
 
   form = this.fb.group({
     familyName: ['', Validators.maxLength(30)],
@@ -39,7 +38,6 @@ export class EditComponent implements OnInit {
   ) {
     this.authService.user$.subscribe((user) => {
       console.log(user.id);
-      this.uid = user.id;
     });
   }
   @HostListener('window:beforeunload', ['$event'])
@@ -95,27 +93,23 @@ export class EditComponent implements OnInit {
 
   submit() {
     const value = this.form.value;
-    console.log(this.form.value);
-    this.friendService
-      .createFriend({
-        familyName: value.familyName,
-        givenName: value.givenName,
-        nickName: value.nickName,
-        familyNameKana: value.familyNameKana,
-        givenNameKana: value.givenNameKana,
-        age: value.age,
-        gender: value.gender,
-        job: value.job,
-        holiday: value.holiday,
-        nearestStation: value.nearestStation,
-        hobby: value.hobby,
-        birthplace: value.birthplace,
-        history: value.history,
-        lastday: value.lastday,
-        memo: value.memo,
-      })
-      .then(() => {
-        this.isComplete = true;
-      });
+    this.isComplete = true;
+    this.friendService.createFriend({
+      familyName: value.familyName,
+      givenName: value.givenName,
+      nickName: value.nickName,
+      familyNameKana: value.familyNameKana,
+      givenNameKana: value.givenNameKana,
+      age: value.age,
+      gender: value.gender,
+      job: value.job,
+      holiday: value.holiday,
+      nearestStation: value.nearestStation,
+      hobby: value.hobby,
+      birthplace: value.birthplace,
+      history: value.history,
+      lastday: value.lastday,
+      memo: value.memo,
+    });
   }
 }

@@ -13,8 +13,16 @@ mat-card {
   text-align: center;
 }
 
-dt {
-  float: left;
-  clear: both;
-  width: 100px;
+ul {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  padding: 12px;
+  list-style: none;
+}
+
+span {
+  padding-left: 8px;
+  margin: 4px;
+  line-height: 1;
 }
