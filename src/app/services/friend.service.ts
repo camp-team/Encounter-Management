@@ -20,7 +20,6 @@ export class FriendService {
 
   createFriend(friend: Omit<Friend, 'id' | 'createdAt'>): Promise<void> {
     const id = this.db.createId();
-    console.log(this.authService.uid);
     return this.db
       .doc<Friend>(`users/${this.authService.uid}/friends/${id}`)
       .set({
@@ -55,5 +54,20 @@ export class FriendService {
         ref.orderBy('createdAt', 'desc')
       )
       .valueChanges();
+  }
+
+  updateFriend(friend: Friend): Promise<void> {
+    const id = this.db.createId();
+    return this.db
+      .doc(`users/${this.authService.uid}/friends/${friend.id}`)
+      .set(friend, {
+        merge: true,
+      })
+      .then(() => {
+        this.snackBar.open('友達情報を編集しました！😋', null, {
+          duration: 2000,
+        });
+        this.router.navigate(['/']);
+      });
   }
 }

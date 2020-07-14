@@ -4,6 +4,7 @@ import { UserDetailRoutingModule } from './user-detail-routing.module';
 import { MatCardModule } from '@angular/material/card';
 import { UserDetailComponent } from './user-detail/user-detail.component';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [UserDetailComponent],
@@ -12,6 +13,7 @@ import { MatButtonModule } from '@angular/material/button';
     UserDetailRoutingModule,
     MatCardModule,
     MatButtonModule,
+    MatIconModule,
   ],
 })
 export class UserDetailModule {}

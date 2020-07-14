@@ -8,8 +8,12 @@
           {{ friend.createdAt.toDate() | date: 'yyyy年MM月dd日' }}
         </p>
         <div>
-          <button mat-flat-button>
-            編集
+          <button
+            mat-flat-button
+            [routerLink]="['/edit']"
+            [queryParams]="{ id: friend.id }"
+          >
+            <span>編集</span>
           </button>
           <button mat-flat-button>
             削除
@@ -48,7 +52,7 @@
             <p>{{ friend.age || '--------' }}歳</p>
           </li>
           <li>
-            <h4>仕事</h4>
+            <h4>職業</h4>
             <p>{{ friend.job || '--------' }}</p>
           </li>
           <li>
