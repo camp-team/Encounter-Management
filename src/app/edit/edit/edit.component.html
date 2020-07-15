@@ -207,6 +207,7 @@
               matInput
               [matDatepicker]="picker"
               placeholder="最後に会った日"
+              [value]="target?.lastday.toDate() || null"
             />
             <mat-datepicker-toggle
               matSuffix
