@@ -47,7 +47,10 @@ export class EditComponent implements OnInit {
       .subscribe((friend) => {
         this.target = friend;
         // フォームに初期値をセット
-        this.form.patchValue(friend);
+        this.form.patchValue({
+          ...friend,
+          lastday: null,
+        });
       });
   }
 
