@@ -207,7 +207,6 @@
               matInput
               [matDatepicker]="picker"
               placeholder="最後に会った日"
-              [value]="target?.lastday.toDate() || null"
             />
             <mat-datepicker-toggle
               matSuffix
@@ -237,12 +236,7 @@
         </div>
 
         <div class="form__button">
-          <button
-            type="button"
-            routerLink="/"
-            mat-flat-button
-            [disabled]="form.invalid || form.pristine"
-          >
+          <button type="button" routerLink="/" mat-flat-button>
             キャンセル
           </button>
           <button

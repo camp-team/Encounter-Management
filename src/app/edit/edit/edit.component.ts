@@ -21,14 +21,14 @@ export class EditComponent implements OnInit {
     familyNameKana: ['', Validators.maxLength(30)],
     givenNameKana: ['', Validators.maxLength(30)],
     gender: [''],
-    age: [''],
+    age: [null],
     job: ['', Validators.maxLength(30)],
     holiday: ['', Validators.maxLength(30)],
     history: ['', Validators.maxLength(400)],
     birthplace: ['', Validators.maxLength(30)],
     nearestStation: ['', Validators.maxLength(30)],
     hobby: ['', Validators.maxLength(30)],
-    lastday: [''],
+    lastday: [null],
     memo: ['', [Validators.maxLength(400)]],
   });
 
@@ -51,6 +51,7 @@ export class EditComponent implements OnInit {
           ...friend,
           lastday: null,
         });
+        this.lastday.setValue(this.target?.lastday.toDate() || null);
       });
   }
 
