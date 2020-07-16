@@ -129,7 +129,6 @@ export class EditComponent implements OnInit {
         memo: value.memo,
       };
       this.friendService.updateFriend(newTarget);
-      console.log(newTarget);
     } else {
       const value = this.form.value;
       this.isComplete = true;
