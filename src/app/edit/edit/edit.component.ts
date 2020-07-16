@@ -2,7 +2,8 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import { Friend } from 'src/app/interfaces/friend';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { FriendService } from 'src/app/services/friend.service';
-import { AuthService } from 'src/app/services/auth.service';
+import { ActivatedRoute } from '@angular/router';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-edit',
@@ -20,26 +21,40 @@ export class EditComponent implements OnInit {
     familyNameKana: ['', Validators.maxLength(30)],
     givenNameKana: ['', Validators.maxLength(30)],
     gender: [''],
-    age: [''],
+    age: [null],
     job: ['', Validators.maxLength(30)],
     holiday: ['', Validators.maxLength(30)],
     history: ['', Validators.maxLength(400)],
     birthplace: ['', Validators.maxLength(30)],
     nearestStation: ['', Validators.maxLength(30)],
     hobby: ['', Validators.maxLength(30)],
-    lastday: [''],
+    lastday: [null],
     memo: ['', [Validators.maxLength(400)]],
   });
 
   constructor(
     private fb: FormBuilder,
     private friendService: FriendService,
-    private authService: AuthService
+    private route: ActivatedRoute
   ) {
-    this.authService.user$.subscribe((user) => {
-      console.log(user.id);
-    });
+    // クエリーパラメータを使って記事データを取得
+    this.route.queryParamMap
+      .pipe(
+        switchMap((params) => {
+          return this.friendService.getFriend(params.get('id'));
+        })
+      )
+      .subscribe((friend) => {
+        this.target = friend;
+        // フォームに初期値をセット
+        this.form.patchValue({
+          ...friend,
+          lastday: null,
+        });
+        this.lastday.setValue(this.target?.lastday.toDate() || null);
+      });
   }
+
   @HostListener('window:beforeunload', ['$event'])
   unloadNotification($event: any) {
     if (this.form.dirty) {
@@ -92,24 +107,48 @@ export class EditComponent implements OnInit {
   ngOnInit(): void {}
 
   submit() {
-    const value = this.form.value;
-    this.isComplete = true;
-    this.friendService.createFriend({
-      familyName: value.familyName,
-      givenName: value.givenName,
-      nickName: value.nickName,
-      familyNameKana: value.familyNameKana,
-      givenNameKana: value.givenNameKana,
-      age: value.age,
-      gender: value.gender,
-      job: value.job,
-      holiday: value.holiday,
-      nearestStation: value.nearestStation,
-      hobby: value.hobby,
-      birthplace: value.birthplace,
-      history: value.history,
-      lastday: value.lastday,
-      memo: value.memo,
-    });
+    if (this.target) {
+      const value = this.form.value;
+      this.isComplete = true;
+      const newTarget: Friend = {
+        ...this.target,
+        familyName: value.familyName,
+        givenName: value.givenName,
+        nickName: value.nickName,
+        familyNameKana: value.familyNameKana,
+        givenNameKana: value.givenNameKana,
+        age: value.age,
+        gender: value.gender,
+        job: value.job,
+        holiday: value.holiday,
+        nearestStation: value.nearestStation,
+        hobby: value.hobby,
+        birthplace: value.birthplace,
+        history: value.history,
+        lastday: value.lastday,
+        memo: value.memo,
+      };
+      this.friendService.updateFriend(newTarget);
+    } else {
+      const value = this.form.value;
+      this.isComplete = true;
+      this.friendService.createFriend({
+        familyName: value.familyName,
+        givenName: value.givenName,
+        nickName: value.nickName,
+        familyNameKana: value.familyNameKana,
+        givenNameKana: value.givenNameKana,
+        age: value.age,
+        gender: value.gender,
+        job: value.job,
+        holiday: value.holiday,
+        nearestStation: value.nearestStation,
+        hobby: value.hobby,
+        birthplace: value.birthplace,
+        history: value.history,
+        lastday: value.lastday,
+        memo: value.memo,
+      });
+    }
   }
 }
