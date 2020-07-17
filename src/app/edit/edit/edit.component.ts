@@ -4,6 +4,8 @@ import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { FriendService } from 'src/app/services/friend.service';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
+import { MatDialog } from '@angular/material/dialog';
+import { FriendDeleteDialogComponent } from '../friend-delete-dialog/friend-delete-dialog.component';
 
 @Component({
   selector: 'app-edit',
@@ -13,6 +15,7 @@ import { switchMap } from 'rxjs/operators';
 export class EditComponent implements OnInit {
   target: Friend;
   isComplete: boolean;
+  friendId: string;
 
   form = this.fb.group({
     familyName: ['', Validators.maxLength(30)],
@@ -35,13 +38,15 @@ export class EditComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private friendService: FriendService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private dialog: MatDialog
   ) {
     // クエリーパラメータを使って記事データを取得
     this.route.queryParamMap
       .pipe(
         switchMap((params) => {
-          return this.friendService.getFriend(params.get('id'));
+          this.friendId = params.get('id');
+          return this.friendService.getFriend(this.friendId);
         })
       )
       .subscribe((friend) => {
@@ -150,5 +155,16 @@ export class EditComponent implements OnInit {
         memo: value.memo,
       });
     }
+  }
+
+  friendDeleteDialog() {
+    this.dialog
+      .open(FriendDeleteDialogComponent)
+      .afterClosed()
+      .subscribe((result) => {
+        if (result) {
+          this.friendService.deleteFriend(this.friendId);
+        }
+      });
   }
 }

@@ -8,9 +8,11 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatDialogModule } from '@angular/material/dialog';
+import { FriendDeleteDialogComponent } from './friend-delete-dialog/friend-delete-dialog.component';
 
 @NgModule({
-  declarations: [EditComponent],
+  declarations: [EditComponent, FriendDeleteDialogComponent],
   imports: [
     CommonModule,
     EditRoutingModule,
@@ -20,6 +22,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatDatepickerModule,
     MatNativeDateModule,
     MatExpansionModule,
+    MatDialogModule,
   ],
 })
 export class EditModule {}

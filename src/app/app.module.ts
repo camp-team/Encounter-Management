@@ -23,6 +23,8 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ShellComponent } from './shell/shell/shell.component';
+import { FriendService } from './services/friend.service';
+import { FriendDeleteDialogComponent } from './edit/friend-delete-dialog/friend-delete-dialog.component';
 
 @NgModule({
   declarations: [
@@ -58,5 +60,6 @@ import { ShellComponent } from './shell/shell/shell.component';
     },
   ],
   bootstrap: [AppComponent],
+  entryComponents: [FriendDeleteDialogComponent],
 })
 export class AppModule {}

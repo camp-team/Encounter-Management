@@ -28,7 +28,7 @@ export class FriendService {
         createdAt: firestore.Timestamp.now(),
       })
       .then(() => {
-        this.snackBar.open('友達情報を追加しました！😋', null, {
+        this.snackBar.open('友達情報を追加しました。', null, {
           duration: 2000,
         });
         this.router.navigate(['/user-detail'], {
@@ -57,14 +57,25 @@ export class FriendService {
   }
 
   updateFriend(friend: Friend): Promise<void> {
-    const id = this.db.createId();
     return this.db
       .doc(`users/${this.authService.uid}/friends/${friend.id}`)
       .set(friend, {
         merge: true,
       })
       .then(() => {
-        this.snackBar.open('友達情報を編集しました！😋', null, {
+        this.snackBar.open('友達情報を編集しました。', null, {
+          duration: 2000,
+        });
+        this.router.navigate(['/']);
+      });
+  }
+
+  deleteFriend(id: string): Promise<void> {
+    return this.db
+      .doc<Friend>(`users/${this.authService.uid}/friends/${id}`)
+      .delete()
+      .then(() => {
+        this.snackBar.open('友達情報を削除しました。', null, {
           duration: 2000,
         });
         this.router.navigate(['/']);

@@ -7,6 +7,15 @@
   max-width: 1032px;
   margin: 0 auto;
 }
+.profile {
+  &__title {
+    border-bottom: 1px inset #ddd;
+    text-align: center;
+  }
+  &__button {
+    text-align: right;
+  }
+}
 h2 {
   font-weight: 500;
 }
