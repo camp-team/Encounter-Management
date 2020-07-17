@@ -1,7 +1,16 @@
 <div class="container">
   <mat-card>
-    <div>
-      <h2>基本情報</h2>
+    <div class="profile">
+      <h2 class="profile__title">基本情報</h2>
+      <div class="profile__button">
+        <ng-container *ngIf="friendId">
+          <div class="form-footer">
+            <button mat-flat-button (click)="friendDeleteDialog()">
+              <span>削除</span>
+            </button>
+          </div>
+        </ng-container>
+      </div>
     </div>
     <div class="form">
       <form [formGroup]="form" (ngSubmit)="submit()">
