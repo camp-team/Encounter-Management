@@ -60,6 +60,5 @@ import { FriendDeleteDialogComponent } from './edit/friend-delete-dialog/friend-
     },
   ],
   bootstrap: [AppComponent],
-  entryComponents: [FriendDeleteDialogComponent],
 })
 export class AppModule {}
