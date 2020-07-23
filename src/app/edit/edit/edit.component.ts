@@ -6,6 +6,8 @@ import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { FriendDeleteDialogComponent } from '../friend-delete-dialog/friend-delete-dialog.component';
+import { ImageCroppedEvent } from 'ngx-image-cropper';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-edit',
@@ -14,8 +16,12 @@ import { FriendDeleteDialogComponent } from '../friend-delete-dialog/friend-dele
 })
 export class EditComponent implements OnInit {
   target: Friend;
+  friend: Friend;
+  target$: Observable<Friend>;
   isComplete: boolean;
   friendId: string;
+  friendPhotURL: string;
+  file: File;
 
   form = this.fb.group({
     familyName: ['', Validators.maxLength(30)],
@@ -23,6 +29,7 @@ export class EditComponent implements OnInit {
     nickName: ['', [Validators.required, Validators.maxLength(20)]],
     familyNameKana: ['', Validators.maxLength(30)],
     givenNameKana: ['', Validators.maxLength(30)],
+    friendPhotURL: [''],
     gender: [''],
     age: [null],
     job: ['', Validators.maxLength(30)],
@@ -122,6 +129,7 @@ export class EditComponent implements OnInit {
         nickName: value.nickName,
         familyNameKana: value.familyNameKana,
         givenNameKana: value.givenNameKana,
+        friendPhotURL: value.friendPhotURL,
         age: value.age,
         gender: value.gender,
         job: value.job,
@@ -143,6 +151,7 @@ export class EditComponent implements OnInit {
         nickName: value.nickName,
         familyNameKana: value.familyNameKana,
         givenNameKana: value.givenNameKana,
+        friendPhotURL: value.friendPhotURL,
         age: value.age,
         gender: value.gender,
         job: value.job,
@@ -167,4 +176,30 @@ export class EditComponent implements OnInit {
         }
       });
   }
+
+  updateAvatar(event) {
+    if (event.target.files.length) {
+      const image = event.target.files[0];
+      this.friendService.updateAvatar(this.friendId, image);
+    }
+  }
+
+  // imageChangedEvent: any = '';
+  // croppedImage: any = '';
+
+  // fileChangeEvent(event: any): void {
+  //   this.imageChangedEvent = event;
+  // }
+  // imageCropped(event: ImageCroppedEvent) {
+  //   this.croppedImage = event.base64;
+  // }
+  // imageLoaded() {
+  //   // show cropper
+  // }
+  // cropperReady() {
+  //   // cropper ready
+  // }
+  // loadImageFailed() {
+  //   // show message
+  // }
 }
