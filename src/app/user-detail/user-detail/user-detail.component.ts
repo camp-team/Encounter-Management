@@ -12,6 +12,8 @@ import { switchMap } from 'rxjs/operators';
 })
 export class UserDetailComponent implements OnInit {
   target$: Observable<Friend>;
+  imageURL: string | ArrayBuffer;
+  friend: Friend;
 
   constructor(
     private route: ActivatedRoute,
@@ -21,6 +23,7 @@ export class UserDetailComponent implements OnInit {
       switchMap((map) => {
         // idパラメータを取得
         const id = map.get('id');
+        this.imageURL = this.friend?.friendPhotoURL;
         return this.friendService.getFriend(id);
       })
     );

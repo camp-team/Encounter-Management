@@ -17,16 +17,19 @@
           </button>
         </div>
       </div>
-      <div *ngIf="friend.friendPhotURL; else default"></div>
+
+      <ng-container *ngIf="target$ | async as friend; else default">
+        <img [src]="friend.friendPhotoURL" />
+      </ng-container>
+
       <ng-template #default>
-        <div class="profile__user">
-          <img
-            class="profile__avatar"
-            src="/assets/images/人物の無料素材.png"
-            alt="顔写真"
-          />
-        </div>
+        <img
+          class="profile__avatar"
+          src="/assets/images/person.png"
+          alt="顔写真"
+        />
       </ng-template>
+
       <div class="profile__body">
         <ul class="profile__list">
           <li>
@@ -68,7 +71,9 @@
           <li>
             <h4>最後に会った日</h4>
             <p>
-              {{ friend?.lastday?.toDate() | date: 'yyyy年MM月dd日' }}
+              {{
+                friend?.lastday?.toDate() | date: 'yyyy年MM月dd日' || '--------'
+              }}
             </p>
           </li>
         </ul>
