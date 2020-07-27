@@ -7,7 +7,7 @@ export interface Friend {
   nickName: string;
   familyNameKana: string;
   givenNameKana: string;
-  friendPhotURL: string;
+  friendPhotoURL: string;
   age: number;
   gender: 'male' | 'female';
   job: string;

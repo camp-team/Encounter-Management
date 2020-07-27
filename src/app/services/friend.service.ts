@@ -84,14 +84,10 @@ export class FriendService {
       });
   }
 
-  async updateAvatar(friendId: string, file: File): Promise<void> {
+  async uploadFriendImage(friendId: string, file: File): Promise<string> {
     const result = await this.storage
       .ref(`users/${this.authService.uid}/friends/${friendId}`)
       .put(file);
-    const photoURL = await result.ref.getDownloadURL();
-
-    this.db.doc(`users/${this.authService.uid}/friends/${friendId}`).update({
-      photoURL,
-    });
+    return result.ref.getDownloadURL();
   }
 }
