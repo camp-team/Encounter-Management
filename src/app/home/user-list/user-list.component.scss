@@ -11,19 +11,21 @@
 }
 mat-card {
   text-align: center;
-  padding: 0;
-}
-
-ul {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-  padding: 12px;
-  list-style: none;
 }
 
 span {
   padding-left: 8px;
   margin: 4px;
   line-height: 1;
+  width: 100%;
+}
+
+.content {
+  max-width: 180px;
+}
+
+p {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }

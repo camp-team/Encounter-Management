@@ -12,7 +12,8 @@ import { Friend } from 'src/app/interfaces/friend';
 })
 export class UserListComponent implements OnInit {
   target$: Observable<Friend[]>;
-
+  imageURL: string | ArrayBuffer;
+  friend: Friend;
   constructor(
     private route: ActivatedRoute,
     private friendService: FriendService
@@ -21,6 +22,7 @@ export class UserListComponent implements OnInit {
       switchMap((map) => {
         // idパラメータを取得
         const id = map.get('id');
+        this.imageURL = this.friend?.friendPhotoURL;
         return this.friendService.getAllFriends();
       })
     );
