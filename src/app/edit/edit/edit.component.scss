@@ -29,24 +29,12 @@ mat-card {
 }
 
 .avatar {
-  width: 300px;
-  height: 300px;
-  background: url(https://fakeimg.pl/300x300/) center/cover;
-  display: inline-block;
+  width: 200px;
+  height: 200px;
   margin: 0 auto;
-  border-radius: 50%;
+  object-fit: scale-down;
+  margin-bottom: 40px;
 }
-
-// .avatar {
-//   width: 300px;
-//   height: 300px;
-//   background: center/cover;
-//   margin: 0 auto;
-//   border-radius: 50%;
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-// }
 
 .form__user {
   display: flex;

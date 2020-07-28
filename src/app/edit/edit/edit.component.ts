@@ -193,30 +193,4 @@ export class EditComponent implements OnInit {
       fr.readAsDataURL(image);
     }
   }
-
-  // createImageAvatar(event) {
-  //   if (event.target.files.length) {
-  //     const image = event.target.files[0];
-  //     this.friendService.createImageAvatar(this.friendId, image);
-  //   }
-  // }
-
-  // imageChangedEvent: any = '';
-  // croppedImage: any = '';
-
-  // fileChangeEvent(event: any): void {
-  //   this.imageChangedEvent = event;
-  // }
-  // imageCropped(event: ImageCroppedEvent) {
-  //   this.croppedImage = event.base64;
-  // }
-  // imageLoaded() {
-  //   // show cropper
-  // }
-  // cropperReady() {
-  //   // cropper ready
-  // }
-  // loadImageFailed() {
-  //   // show message
-  // }
 }

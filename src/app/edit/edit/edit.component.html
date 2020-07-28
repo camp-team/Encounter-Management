@@ -74,24 +74,30 @@
           </mat-form-field>
         </div>
 
-        <ng-container *ngIf="imageURL; else default">
-          <img [src]="imageURL" />
-          <input
-            type="file"
-            accept="image/*"
-            formControlName="friendPhotURL"
-            (change)="updateAvatar($event)"
-          />
-        </ng-container>
+        <div class="avatar">
+          <ng-container *ngIf="imageURL; else default">
+            <img [src]="imageURL" />
+            <input
+              type="file"
+              accept="image/*"
+              formControlName="friendPhotURL"
+              (change)="updateAvatar($event)"
+            />
+          </ng-container>
 
-        <ng-template #default>
-          <img
-            class="profile__avatar"
-            src="/assets/images/person.png"
-            alt="顔写真"
-          />
-          <input type="file" accept="image/*" (change)="updateAvatar($event)" />
-        </ng-template>
+          <ng-template #default>
+            <img
+              class="profile__avatar"
+              src="/assets/images/person.png"
+              alt="顔写真"
+            />
+            <input
+              type="file"
+              accept="image/*"
+              (change)="updateAvatar($event)"
+            />
+          </ng-template>
+        </div>
 
         <mat-form-field appearance="outline">
           <mat-label>ニックネーム</mat-label>

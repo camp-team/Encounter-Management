@@ -85,9 +85,11 @@ export class FriendService {
   }
 
   async uploadFriendImage(friendId: string, file: File): Promise<string> {
-    const result = await this.storage
-      .ref(`users/${this.authService.uid}/friends/${friendId}`)
-      .put(file);
-    return result.ref.getDownloadURL();
+    if (file) {
+      const result = await this.storage
+        .ref(`users/${this.authService.uid}/friends/${friendId}`)
+        .put(file);
+      return result.ref.getDownloadURL();
+    }
   }
 }
