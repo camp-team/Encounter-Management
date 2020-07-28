@@ -11,21 +11,11 @@ import { Friend } from 'src/app/interfaces/friend';
   styleUrls: ['./user-list.component.scss'],
 })
 export class UserListComponent implements OnInit {
-  target$: Observable<Friend[]>;
-  imageURL: string | ArrayBuffer;
-  friend: Friend;
+  friends$: Observable<Friend[]> = this.friendService.getAllFriends();
+
   constructor(
     private route: ActivatedRoute,
     private friendService: FriendService
-  ) {
-    this.target$ = this.route.queryParamMap.pipe(
-      switchMap((map) => {
-        // idパラメータを取得
-        const id = map.get('id');
-        this.imageURL = this.friend?.friendPhotoURL;
-        return this.friendService.getAllFriends();
-      })
-    );
-  }
+  ) {}
   ngOnInit(): void {}
 }

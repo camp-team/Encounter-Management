@@ -1,6 +1,6 @@
 <p>友達リスト</p>
 <div class="grid">
-  <mat-card *ngFor="let friend of target$ | async">
+  <mat-card *ngFor="let friend of friends$ | async">
     <button
       mat-flat-button
       [routerLink]="['/user-detail']"
@@ -9,17 +9,19 @@
       詳細
     </button>
     <mat-card-title>{{ friend.nickName }}</mat-card-title>
-    <ng-container *ngIf="target$ | async as friend; else default">
-      <img [src]="friend.friendPhotoURL" />
-    </ng-container>
+    <div class="avatar">
+      <ng-container *ngIf="friend; else default">
+        <img [src]="friend.friendPhotoURL" />
+      </ng-container>
 
-    <ng-template #default>
-      <img
-        class="profile__avatar"
-        src="/assets/images/person.png"
-        alt="顔写真"
-      />
-    </ng-template>
+      <ng-template #default>
+        <img
+          class="profile__avatar"
+          src="/assets/images/person.png"
+          alt="顔写真"
+        />
+      </ng-template>
+    </div>
     <div class="content">
       <span>お休み</span>
       <p>{{ friend.holiday || '--------' }}</p>
