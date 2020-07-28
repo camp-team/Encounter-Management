@@ -17,19 +17,19 @@
           </button>
         </div>
       </div>
+      <div class="profile__avatar">
+        <ng-container *ngIf="target$ | async as friend; else default">
+          <img [src]="friend.friendPhotoURL" />
+        </ng-container>
 
-      <ng-container *ngIf="target$ | async as friend; else default">
-        <img [src]="friend.friendPhotoURL" />
-      </ng-container>
-
-      <ng-template #default>
-        <img
-          class="profile__avatar"
-          src="/assets/images/person.png"
-          alt="顔写真"
-        />
-      </ng-template>
-
+        <ng-template #default>
+          <img
+            class="profile__avatar"
+            src="/assets/images/person.png"
+            alt="顔写真"
+          />
+        </ng-template>
+      </div>
       <div class="profile__body">
         <ul class="profile__list">
           <li>
