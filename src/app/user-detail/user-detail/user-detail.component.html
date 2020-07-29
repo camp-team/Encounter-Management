@@ -1,7 +1,7 @@
 <div class="container">
   <mat-card *ngIf="target$ | async as friend">
     <div class="profile">
-      <h2 class="profile__title">{{ friend.nickName }}</h2>
+      <h2 class="profile__title">{{ friend.nickname }}</h2>
       <div class="profile__button">
         <p>
           作成日
@@ -18,15 +18,15 @@
         </div>
       </div>
       <div class="profile__avatar">
-        <ng-container *ngIf="target$ | async as friend; else default">
-          <img [src]="friend.friendPhotoURL" />
+        <ng-container *ngIf="friend.friendPhotoURL; else default">
+          <img [src]="friend.friendPhotoURL" alt="friendImage" />
         </ng-container>
 
         <ng-template #default>
           <img
             class="profile__avatar"
             src="/assets/images/person.png"
-            alt="顔写真"
+            alt="friendImage"
           />
         </ng-template>
       </div>
