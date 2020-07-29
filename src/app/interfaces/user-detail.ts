@@ -1,6 +1,6 @@
 export interface UserDetail {
   name: string;
-  nickName: string;
+  nickname: string;
   birthday: number;
   age: number;
   job: string;
