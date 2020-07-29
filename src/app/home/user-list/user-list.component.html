@@ -8,17 +8,17 @@
     >
       詳細
     </button>
-    <mat-card-title>{{ friend.nickName }}</mat-card-title>
+    <mat-card-title>{{ friend.nickname }}</mat-card-title>
     <div class="avatar">
-      <ng-container *ngIf="friend; else default">
-        <img [src]="friend.friendPhotoURL" />
+      <ng-container *ngIf="friend.friendPhotoURL; else default">
+        <img [src]="friend.friendPhotoURL" alt="friendImage" />
       </ng-container>
 
       <ng-template #default>
         <img
           class="profile__avatar"
           src="/assets/images/person.png"
-          alt="顔写真"
+          alt="friendImage"
         />
       </ng-template>
     </div>
