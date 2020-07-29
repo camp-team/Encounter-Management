@@ -25,7 +25,7 @@ export class EditComponent implements OnInit {
   form = this.fb.group({
     familyName: ['', Validators.maxLength(30)],
     givenName: ['', Validators.maxLength(30)],
-    nickName: ['', [Validators.required, Validators.maxLength(20)]],
+    nickname: ['', [Validators.required, Validators.maxLength(20)]],
     familyNameKana: ['', Validators.maxLength(30)],
     givenNameKana: ['', Validators.maxLength(30)],
     friendPhotURL: [''],
@@ -84,8 +84,8 @@ export class EditComponent implements OnInit {
   get givenName() {
     return this.form.get('givenName') as FormControl;
   }
-  get nickName() {
-    return this.form.get('nickName') as FormControl;
+  get nickname() {
+    return this.form.get('nickname') as FormControl;
   }
   get familyNameKana() {
     return this.form.get('familyNameKana') as FormControl;
@@ -134,7 +134,7 @@ export class EditComponent implements OnInit {
       ...this.target,
       familyName: value.familyName,
       givenName: value.givenName,
-      nickName: value.nickName,
+      nickname: value.nickname,
       familyNameKana: value.familyNameKana,
       givenNameKana: value.givenNameKana,
       friendPhotoURL: avatarURL || '',
@@ -155,7 +155,7 @@ export class EditComponent implements OnInit {
       this.friendService.createFriend({
         familyName: value.familyName,
         givenName: value.givenName,
-        nickName: value.nickName,
+        nickname: value.nickname,
         familyNameKana: value.familyNameKana,
         givenNameKana: value.givenNameKana,
         friendPhotoURL: avatarURL || '',
