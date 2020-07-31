@@ -6,6 +6,7 @@ import { AuthService } from './auth.service';
 import { firestore } from 'firebase';
 import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
+import { AngularFireStorage } from '@angular/fire/storage';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +16,8 @@ export class FriendService {
     private db: AngularFirestore,
     private snackBar: MatSnackBar,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private storage: AngularFireStorage
   ) {}
 
   createFriend(friend: Omit<Friend, 'id' | 'createdAt'>): Promise<void> {
@@ -80,5 +82,14 @@ export class FriendService {
         });
         this.router.navigate(['/']);
       });
+  }
+
+  async uploadFriendImage(friendId: string, file: File): Promise<string> {
+    if (file) {
+      const result = await this.storage
+        .ref(`users/${this.authService.uid}/friends/${friendId}`)
+        .put(file);
+      return result.ref.getDownloadURL();
+    }
   }
 }

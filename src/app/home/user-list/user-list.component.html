@@ -1,32 +1,30 @@
 <p>友達リスト</p>
-<mat-tab-group>
-  <mat-tab label="彼女">
-    <div class="grid">
-      <mat-card *ngFor="let friend of target$ | async">
-        <button
-          mat-flat-button
-          [routerLink]="['/user-detail']"
-          [queryParams]="{ id: friend.id }"
-        >
-          詳細
-        </button>
-        <mat-card-title>{{ friend.nickName }}</mat-card-title>
-        <img mat-card-image src="https://placehold.it/400x200" alt="" />
-        <mat-card-content>
-          <ul>
-            <li>
-              <span>お休み</span>
-              <p>{{ friend.holiday || '--------' }}</p>
-            </li>
-            <li>
-              <span>職業</span>
-              <p>{{ friend.job || '--------' }}</p>
-            </li>
-          </ul>
-        </mat-card-content>
-      </mat-card>
+<div class="grid">
+  <mat-card *ngFor="let friend of friends$ | async">
+    <button
+      mat-flat-button
+      [routerLink]="['/user-detail']"
+      [queryParams]="{ id: friend.id }"
+    >
+      詳細
+    </button>
+    <mat-card-title>{{ friend.nickname }}</mat-card-title>
+    <div class="avatar">
+      <ng-container *ngIf="friend.friendPhotoURL; else default">
+        <img [src]="friend.friendPhotoURL" alt="friendImage" />
+      </ng-container>
+
+      <ng-template #default>
+        <img
+          class="profile__avatar"
+          src="/assets/images/person.png"
+          alt="friendImage"
+        />
+      </ng-template>
     </div>
-  </mat-tab>
-  <mat-tab label="Tinder"> Content 2 </mat-tab>
-  <mat-tab label="友達"> Content 3 </mat-tab>
-</mat-tab-group>
+    <div class="content">
+      <span>お休み</span>
+      <p>{{ friend.holiday || '--------' }}</p>
+    </div>
+  </mat-card>
+</div>

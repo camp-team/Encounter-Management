@@ -4,9 +4,10 @@ export interface Friend {
   id: string;
   familyName: string;
   givenName: string;
-  nickName: string;
+  nickname: string;
   familyNameKana: string;
   givenNameKana: string;
+  friendPhotoURL: string;
   age: number;
   gender: 'male' | 'female';
   job: string;

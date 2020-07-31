@@ -25,12 +25,7 @@ mat-card {
     justify-content: space-between;
   }
   &__avatar {
-    width: 300px;
-    height: 300px;
-    background: url(https://fakeimg.pl/300x300/) center/cover;
-    display: inline-block;
-    margin: 0 auto;
-    border-radius: 50%;
+    text-align: center;
   }
   &__user {
     text-align: center;

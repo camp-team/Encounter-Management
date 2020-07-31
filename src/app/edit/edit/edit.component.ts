@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { FriendDeleteDialogComponent } from '../friend-delete-dialog/friend-delete-dialog.component';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-edit',
@@ -14,15 +15,20 @@ import { FriendDeleteDialogComponent } from '../friend-delete-dialog/friend-dele
 })
 export class EditComponent implements OnInit {
   target: Friend;
+  friend: Friend;
+  target$: Observable<Friend>;
   isComplete: boolean;
   friendId: string;
+  imageFile: File;
+  imageURL: string | ArrayBuffer;
 
   form = this.fb.group({
     familyName: ['', Validators.maxLength(30)],
     givenName: ['', Validators.maxLength(30)],
-    nickName: ['', [Validators.required, Validators.maxLength(20)]],
+    nickname: ['', [Validators.required, Validators.maxLength(20)]],
     familyNameKana: ['', Validators.maxLength(30)],
     givenNameKana: ['', Validators.maxLength(30)],
+    friendPhotURL: [''],
     gender: [''],
     age: [null],
     job: ['', Validators.maxLength(30)],
@@ -51,12 +57,15 @@ export class EditComponent implements OnInit {
       )
       .subscribe((friend) => {
         this.target = friend;
+        this.imageURL = friend?.friendPhotoURL;
         // フォームに初期値をセット
         this.form.patchValue({
           ...friend,
           lastday: null,
         });
-        this.lastday.setValue(this.target?.lastday.toDate() || null);
+        if (this.target?.lastday) {
+          this.lastday.setValue(this.target.lastday.toDate());
+        }
       });
   }
 
@@ -75,14 +84,17 @@ export class EditComponent implements OnInit {
   get givenName() {
     return this.form.get('givenName') as FormControl;
   }
-  get nickName() {
-    return this.form.get('nickName') as FormControl;
+  get nickname() {
+    return this.form.get('nickname') as FormControl;
   }
   get familyNameKana() {
     return this.form.get('familyNameKana') as FormControl;
   }
   get givenNameKana() {
     return this.form.get('givenNameKana') as FormControl;
+  }
+  get friendPhotURL() {
+    return this.form.get('friendPhotURL') as FormControl;
   }
   get job() {
     return this.form.get('job') as FormControl;
@@ -111,38 +123,42 @@ export class EditComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  submit() {
+  async submit() {
+    const value = this.form.value;
+    this.isComplete = true;
+    const avatarURL: string = await this.friendService.uploadFriendImage(
+      this.friendId,
+      this.imageFile
+    );
+    const newTarget: Friend = {
+      ...this.target,
+      familyName: value.familyName,
+      givenName: value.givenName,
+      nickname: value.nickname,
+      familyNameKana: value.familyNameKana,
+      givenNameKana: value.givenNameKana,
+      friendPhotoURL: avatarURL || '',
+      age: value.age,
+      gender: value.gender,
+      job: value.job,
+      holiday: value.holiday,
+      nearestStation: value.nearestStation,
+      hobby: value.hobby,
+      birthplace: value.birthplace,
+      history: value.history,
+      lastday: value.lastday,
+      memo: value.memo,
+    };
     if (this.target) {
-      const value = this.form.value;
-      this.isComplete = true;
-      const newTarget: Friend = {
-        ...this.target,
-        familyName: value.familyName,
-        givenName: value.givenName,
-        nickName: value.nickName,
-        familyNameKana: value.familyNameKana,
-        givenNameKana: value.givenNameKana,
-        age: value.age,
-        gender: value.gender,
-        job: value.job,
-        holiday: value.holiday,
-        nearestStation: value.nearestStation,
-        hobby: value.hobby,
-        birthplace: value.birthplace,
-        history: value.history,
-        lastday: value.lastday,
-        memo: value.memo,
-      };
       this.friendService.updateFriend(newTarget);
     } else {
-      const value = this.form.value;
-      this.isComplete = true;
       this.friendService.createFriend({
         familyName: value.familyName,
         givenName: value.givenName,
-        nickName: value.nickName,
+        nickname: value.nickname,
         familyNameKana: value.familyNameKana,
         givenNameKana: value.givenNameKana,
+        friendPhotoURL: avatarURL || '',
         age: value.age,
         gender: value.gender,
         job: value.job,
@@ -166,5 +182,15 @@ export class EditComponent implements OnInit {
           this.friendService.deleteFriend(this.friendId);
         }
       });
+  }
+
+  updateAvatar(event) {
+    if (event.target.files.length) {
+      const image = event.target.files[0];
+      this.imageFile = image;
+      const fr = new FileReader();
+      fr.onload = (e) => (this.imageURL = e.target.result);
+      fr.readAsDataURL(image);
+    }
   }
 }
