@@ -72,7 +72,8 @@
             <h4>最後に会った日</h4>
             <p>
               {{
-                friend?.lastday?.toDate() | date: 'yyyy年MM月dd日' || '--------'
+                (friend?.lastday?.toDate() | date: 'yyyy年MM月dd日') ||
+                  '--------'
               }}
             </p>
           </li>
